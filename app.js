@@ -31,44 +31,32 @@ function updateProgress(current) {
   const progress = document.querySelector('#progress');
   progress.value = count;
   progress.max = chapters.length;
-  document.querySelector('#progress-label').textContent = count + ' von ' + chapters.length + ' Kapiteln gelöst';
+  document.querySelector('#progress-label').textContent = count + ' von ' + chapters.length + ' Kapiteln abgeschlossen';
   timeline.replaceChildren(...chapters.map(chapter => {
     const anchor = link('', '#' + chapter.id);
     anchor.append(element('span', chapter.era, 'date'), element('span', chapter.title));
-    if (saved[chapter.id] === true) anchor.append(element('small', '✓ Gelöst'));
+    if (saved[chapter.id] === true) anchor.append(element('small', '✓ Abgeschlossen'));
     if (chapter.id === current.id) anchor.setAttribute('aria-current', 'location');
     return anchor;
   }));
 }
 
-function addQuiz(chapter) {
-  const [question, choices, correct, explanation] = chapter.quiz;
-  const box = element('section', '', 'quiz');
-  const field = element('fieldset');
-  field.append(element('legend', question));
-  const feedback = element('p', '', 'feedback');
-  feedback.setAttribute('role', 'status');
-  choices.forEach((choice, index) => {
-    const label = element('label', '', 'option');
-    const input = element('input');
-    input.type = 'radio';
-    input.name = 'antwort';
-    input.checked = saved[chapter.id] === true && index === correct;
-    input.addEventListener('change', () => {
-      const solved = index === correct;
-      feedback.textContent = solved ? 'Richtig. ' + explanation : 'Versuche es noch einmal. Lies den entsprechenden Abschnitt oben nach.';
-      if (solved) {
-        saved[chapter.id] = true;
-        try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch {}
-        updateProgress(chapter);
-      }
-    });
-    label.append(input, element('span', choice));
-    field.append(label);
+function addCompletionButton(chapter) {
+  const button = element('button', '', 'completion');
+  button.type = 'button';
+  const refresh = () => {
+    const completed = saved[chapter.id] === true;
+    button.textContent = completed ? '✓ Kapitel abgeschlossen' : 'Kapitel abschliessen';
+    button.setAttribute('aria-pressed', String(completed));
+  };
+  button.addEventListener('click', () => {
+    saved[chapter.id] = saved[chapter.id] !== true;
+    try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch {}
+    refresh();
+    updateProgress(chapter);
   });
-  if (saved[chapter.id] === true) feedback.textContent = 'Richtig. ' + explanation;
-  box.append(element('h3', 'Lerncheck'), field, feedback);
-  main.append(box);
+  refresh();
+  main.append(button);
 }
 
 function addImage([file, directory, caption, credit]) {
@@ -116,7 +104,7 @@ function render(focus = false) {
     section.append(element('h3', 'Quellenarbeit'), element('p', prompt), reveal);
     main.append(section);
   }
-  addQuiz(chapter);
+  addCompletionButton(chapter);
   const navigation = element('nav', '', 'next');
   navigation.setAttribute('aria-label', 'Kapitel wechseln');
   if (index > 0) navigation.append(link('← ' + chapters[index - 1].title, '#' + chapters[index - 1].id));
