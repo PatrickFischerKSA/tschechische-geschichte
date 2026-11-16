@@ -81,7 +81,7 @@ function modelAnswer(model) {
 
 function render(focus = false) {
   const requested = location.hash.slice(1);
-  const chapter = chapters.find(entry => entry.id === requested) || chapters[0];
+  const chapter = chapters.find(entry => entry.id === requested) || chapters.find(entry => entry.id === 'republik');
   updateProgress(chapter);
   const index = chapters.indexOf(chapter);
   main.replaceChildren(element('p', chapter.era, 'eyebrow'), element('h2', chapter.title));
@@ -106,7 +106,7 @@ function render(focus = false) {
   if (chapter.task || exercises.length) {
     const section = element('section', '', 'task');
     section.append(element('h3', 'Quellenarbeit'));
-    for (const [source, prompt, model] of exercises) {
+    for (const [source, prompt, model, range] of exercises) {
       const exercise = element('div', '', 'reading');
       const heading = element('h4');
       if (source === 'image') {
@@ -115,7 +115,9 @@ function render(focus = false) {
         const [kind, title, url] = chapter.media[source];
         heading.append(link(kind + ' · ' + title + ' ↗', url, true));
       }
-      exercise.append(heading, element('p', prompt), modelAnswer(model));
+      exercise.append(heading);
+      if (range) exercise.append(element('p', 'Zeitfenster ' + range + ' ab Beitragsbeginn, ohne Werbung', 'date'));
+      exercise.append(element('p', prompt), modelAnswer(model));
       section.append(exercise);
     }
     if (chapter.task) {
