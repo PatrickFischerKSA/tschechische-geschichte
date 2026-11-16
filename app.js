@@ -85,6 +85,11 @@ function render(focus = false) {
   updateProgress(chapter);
   const index = chapters.indexOf(chapter);
   main.replaceChildren(element('p', chapter.era, 'eyebrow'), element('h2', chapter.title));
+  if (['anfang', 'sprache', 'republik', 'muenchen', 'besatzung', 'revolution'].includes(chapter.id)) {
+    const maps = element('p');
+    maps.append(link('Regionen und Grenzen auf den Karten vergleichen ↑', '#karten'));
+    main.append(maps);
+  }
   if (chapter.image) addImage(chapter.image);
   for (const [title, body] of chapter.sections) {
     const section = element('section', '', 'reading');
@@ -133,7 +138,7 @@ function render(focus = false) {
   if (index > 0) navigation.append(link('← ' + chapters[index - 1].title, '#' + chapters[index - 1].id));
   if (index < chapters.length - 1) navigation.append(link(chapters[index + 1].title + ' →', '#' + chapters[index + 1].id));
   main.append(navigation);
-  if (focus) {
+  if (focus && requested !== 'karten') {
     main.focus({preventScroll: true});
     main.scrollIntoView({block: 'start'});
   }

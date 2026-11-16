@@ -52,3 +52,15 @@ footer{border-top:1px solid var(--line);padding:1.3rem;text-align:center;color:v
 .orientation-copy{max-width:48rem;margin-top:1.5rem;line-height:1.6}
 @media(max-width:850px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:420px){.gallery{grid-template-columns:1fr}}
+
+.map-atlas { scroll-margin-top: 1rem; }
+.map-atlas .orientation-copy { margin-bottom: 1.5rem; }
+.map-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.map-grid figure { margin: 0; }
+.map-grid h3 { padding: .85rem .85rem 0; }
+.map-grid img { height: clamp(13rem, 28vw, 24rem); background: #fff; }
+.map-grid a:focus-visible { outline-offset: -3px; }
+@media (max-width: 680px) {
+  .map-grid { grid-template-columns: 1fr; }
+  .map-grid img { height: auto; max-height: 21rem; }
+}
