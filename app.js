@@ -73,6 +73,12 @@ function addImage([file, directory, caption, credit]) {
   main.append(figure);
 }
 
+function modelAnswer(model) {
+  const reveal = element('details');
+  reveal.append(element('summary', 'Musterlösung anzeigen'), element('p', model));
+  return reveal;
+}
+
 function render(focus = false) {
   const requested = location.hash.slice(1);
   const chapter = chapters.find(entry => entry.id === requested) || chapters[0];
@@ -96,12 +102,27 @@ function render(focus = false) {
     section.append(element('h3', 'Quellen und Medien'), list);
     main.append(section);
   }
-  if (chapter.task) {
-    const [prompt, model] = chapter.task;
+  const exercises = mediaTasks[chapter.id] || [];
+  if (chapter.task || exercises.length) {
     const section = element('section', '', 'task');
-    const reveal = element('details');
-    reveal.append(element('summary', 'Mögliche Auswertung anzeigen'), element('p', model));
-    section.append(element('h3', 'Quellenarbeit'), element('p', prompt), reveal);
+    section.append(element('h3', 'Quellenarbeit'));
+    for (const [source, prompt, model] of exercises) {
+      const exercise = element('div', '', 'reading');
+      const heading = element('h4');
+      if (source === 'image') {
+        heading.textContent = 'Bild · ' + chapter.image[2];
+      } else {
+        const [kind, title, url] = chapter.media[source];
+        heading.append(link(kind + ' · ' + title + ' ↗', url, true));
+      }
+      exercise.append(heading, element('p', prompt), modelAnswer(model));
+      section.append(exercise);
+    }
+    if (chapter.task) {
+      const [prompt, model] = chapter.task;
+      if (exercises.length) section.append(element('h4', 'Vertiefung'));
+      section.append(element('p', prompt), modelAnswer(model));
+    }
     main.append(section);
   }
   addCompletionButton(chapter);
