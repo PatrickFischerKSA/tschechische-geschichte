@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Interaktive Selbstlerneinheit zur tschechischen Geschichte mit historischen Quellen und Quiz.">
+<title>Tschechische Geschichte · Selbstlerneinheit</title>
+<link rel="stylesheet" href="style.css">
+<script src="content.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#lektion">Zur Lektion</a>
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Geschichte Mitteleuropas</p>
+    <h1>Tschechische<br>Geschichte</h1>
+    <p class="intro">Von den böhmischen Ländern zur Republik in Europa. Ein Selbstlernkurs mit Schwerpunkt auf den Umbrüchen seit 1918.</p>
+    <a class="start" href="#republik">Mit 1918 beginnen <span aria-hidden="true">↗</span></a>
+  </div>
+</header>
+<div class="layout">
+  <aside>
+    <div class="progress"><label for="progress" id="progress-label">Lernfortschritt</label><progress id="progress" value="0" max="13" aria-labelledby="progress-label"></progress></div>
+    <nav aria-label="Chronologische Kapitel" id="timeline"></nav>
+  </aside>
+  <main id="lektion" tabindex="-1"></main>
+</div>
+<footer>CS = Tschechisch · EN = Englisch · DE = Deutsch. Externe Archive öffnen in einem neuen Tab.</footer>
+<noscript>Aktiviere JavaScript, um die Kapitel und Aufgaben zu nutzen.</noscript>
+</body>
+</html>
