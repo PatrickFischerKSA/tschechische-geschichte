@@ -199,10 +199,22 @@ function appendCulturalSources(section, chapterId, index) {
     }
   }
   if (chapterId === 'revolution' && index === 2) appendHavelFilm(section);
+  if (chapterId === 'umbruch' && index === 1) {
+    section.append(element('h4', 'Wie die Vertreibung in der Gegenwart erinnert wird'));
+    section.append(element('p', 'Jaroslav Rudiš und Jaromír 99 greifen in «Alois Nebel» die Gewaltgeschichte des Grenzlands auf. Die Handlung am Ende der 1980er-Jahre verbindet den Alltag eines Eisenbahners mit belastenden Erinnerungen. Die Comicbilder geben der Erfahrung von Angst und Verunsicherung eine eigene Form.'));
+    section.append(link('Zu den Comic-Auszügen und Aufgaben in der Rudiš-Station →', '#gegenwart/5'));
+    section.append(sourceActivity('Vergleich · historische Darstellung und Graphic Novel', null, [null,
+      'Vergleiche diesen Abschnitt über die Vertreibung mit den Comicseiten 39 und 94 in der Rudiš-Station. Welche Fragen beantwortet der historische Text? Wie gestalten die Bilder aufgeschreckten Gesichtsausdruck, Licht, Schatten und räumliche Distanz? Erkläre, was die literarische Darstellung zur Erinnerung beitragen kann und welche Tatsachen über die Vertreibung sich aus diesen beiden Seiten allein nicht erschliessen lassen.',
+      'Der historische Text erklärt die Gewalt von 1945, die organisierten Transporte von 1946 und Eingriffe in Staatsbürgerschaft und Eigentum. Die Comicseiten konzentrieren sich auf Wahrnehmung und Atmosphäre. Seite 39 zeigt ein angespanntes Gesicht und Kabel, Seite 94 eine sich im Flur entfernende Figur. So kann die Graphic Novel Angst und Entfremdung erfahrbar machen. Diese Seiten zeigen jedoch keine unmittelbar erkennbare Vertreibungsszene. Opferzahlen, politische Entscheidungen und individuelle Verantwortung müssen anhand historischer Quellen geprüft werden.'
+    ]));
+  }
   if (chapterId === 'gegenwart' && index === 4) appendRudisSources(section);
 }
 
 function appendRudisSources(section) {
+  section.append(element('p', 'Die Erinnerung an Krieg und Vertreibung verbindet diese Graphic Novel mit dem Nachkriegskapitel.'));
+  section.append(link('Zur Station «Flucht und Vertreibung» mit Vergleichsaufgabe →', '#umbruch/2'));
+
   section.append(element('h4', 'Kafka Band – Literatur wird Musik'));
   section.append(element('p', 'Rudiš verbindet in der Kafka Band literarische Texte mit Musik. Das Projekt arbeitet mehrsprachig und greift Kafkas Romane auf. Die offizielle Bandseite verweist auf diese Aufnahme zu «Der Process».'));
   const music = element('iframe', '', 'film-player');
@@ -464,15 +476,17 @@ function closeMarta() {
 
 soundtrack.addEventListener('play', closeMarta);
 document.querySelector('#marta-close').addEventListener('click', closeMarta);
-soundtrack.addEventListener('ended', () => {
-  updateSoundtrackButton();
+function startMarta() {
+  soundtrack.pause();
   const player = element('iframe', '', 'film-player');
   player.title = 'Marta Kubišová – Modlitba pro Martu';
   player.src = 'https://www.youtube-nocookie.com/embed/8IzKWTcK1po?autoplay=1&playsinline=1';
   player.allow = 'autoplay; fullscreen';
   martaPlayer.hidden = false;
   martaVideo.replaceChildren(player);
-});
+}
+soundtrack.addEventListener('ended', startMarta);
+document.querySelector('#marta-start').addEventListener('click', startMarta);
 main.addEventListener('click', event => {
   if (event.target.closest('a[target="_blank"]')) {
     soundtrack.pause();

@@ -274,3 +274,5 @@ body {
 .evidence-images img { aspect-ratio: 4 / 3; object-fit: contain; background: #e3e8ef; }
 video.film-player { background: #000; margin: .7rem 0; }
 @media(max-width: 600px) { .evidence-images { grid-template-columns: 1fr; } }
+
+button.start { font: inherit; font-weight: 750; border: 0; cursor: pointer; }
