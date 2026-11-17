@@ -146,10 +146,60 @@ function appendCulturalSources(section, chapterId, index) {
     section.append(paragraph);
   }
   if (chapterId === 'besatzung' && index === 3) {
+    appendAnthropoidMedia(section);
     const exercise = mediaTasks.besatzung.find(([source]) => source === 'lidice');
     section.append(sourceActivity('Widerstand und Besatzungsterror', null, exercise));
   }
   if (chapterId === 'revolution' && index === 2) appendHavelFilm(section);
+}
+
+function appendAnthropoidMedia(section) {
+  const gallery = element('div', '', 'evidence-images');
+  for (const [file, caption, page, credit] of [
+    ['heydrich-wagen.jpg', 'Heydrichs beschädigter Mercedes nach dem Attentat in Prag, 1942. Die Aufnahme zeigt die Folgen des Angriffs.', 'Bundesarchiv_Bild_146-1972-039-44,_Heydrich-Attentat.jpg', 'Bundesarchiv, Bild 146-1972-039-44 · CC BY-SA 3.0 DE'],
+    ['lidice-1942.jpg', 'Lidice nach der Zerstörung im Juni 1942. Von den Häusern stehen Ruinen.', 'Bundesarchiv_Bild_146-1993-020-26A,_Lidice,_Ort_nach_Zerstörung.jpg', 'Bundesarchiv, Bild 146-1993-020-26A · unbekannte Urheberschaft · gemeinfrei']
+  ]) {
+    const figure = element('figure');
+    const image = element('img');
+    image.src = 'bilder/' + file;
+    image.alt = caption;
+    image.loading = 'lazy';
+    const description = element('figcaption', caption + ' ');
+    description.append(link(credit, 'https://commons.wikimedia.org/wiki/File:' + encodeURIComponent(page), true));
+    figure.append(image, description);
+    gallery.append(figure);
+  }
+  section.append(gallery);
+  section.append(element('h4', 'Das Attentat erklären'));
+  section.append(element('p', 'Der deutschsprachige Kalenderblatt-Beitrag «27.5.1942: Auf Reinhard Heydrich wird ein Attentat verübt» erläutert den Anschlag. Die YouTube-Veröffentlichung trägt die Kennzeichnung SWR und stammt vom Kanal Kalenderblatt. Laufzeit 3:26 Minuten.'));
+  const attack = element('iframe', '', 'film-player');
+  attack.src = 'https://www.youtube-nocookie.com/embed/iUtNlkNn9-U';
+  attack.title = 'Deutschsprachiger Kurzbeitrag zum Attentat auf Heydrich';
+  attack.loading = 'lazy';
+  attack.allow = 'fullscreen; picture-in-picture';
+  section.append(attack, link('Beitrag auf YouTube öffnen ↗', 'https://www.youtube.com/watch?v=iUtNlkNn9-U', true));
+  section.append(element('h4', 'Lidice in historischen Filmaufnahmen'));
+  section.append(element('p', 'Der einminütige Archivfilm «Destruction of Lidice» zeigt die Zerstörung des Dorfes. Die deutschen Untertitel sind ergänzende historische Erläuterungen dieser Lernstation. Sie ordnen die Bilder anhand des USHMM-Dossiers ein.'));
+  const video = element('video', '', 'film-player');
+  video.controls = true;
+  video.preload = 'none';
+  video.playsInline = true;
+  video.crossOrigin = 'anonymous';
+  video.poster = 'bilder/lidice-1942.jpg';
+  video.src = 'https://encyclopedia.ushmm.org/asset/c39694ea-6446-430e-910b-3d8fd4a90e75.mp4';
+  const captions = element('track');
+  captions.kind = 'subtitles';
+  captions.label = 'Deutsche historische Erläuterungen';
+  captions.srclang = 'de';
+  captions.src = 'untertitel/lidice-de.vtt';
+  captions.default = true;
+  video.append(captions);
+  video.addEventListener('play', () => {
+    soundtrack.pause();
+    closeMarta();
+  });
+  section.append(video, link('Archivfilm und Herkunft beim USHMM ↗', 'https://encyclopedia.ushmm.org/content/en/film/destruction-of-lidice', true));
+  section.append(sourceActivity('Archivfilm untersuchen · 00:00–01:01', null, [null, 'Beschreibe zwei sichtbare Spuren der Zerstörung. Was kann der Film über Lidice belegen, und welche Informationen über die Opfer musst du dem Stationstext entnehmen?', 'Zerstörte Häuser und Trümmer dokumentieren die Zerstörung des Ortes. Über die Namen, die Zahl und das weitere Schicksal der Opfer geben diese Bilder allein keine ausreichende Auskunft. Der Stationstext und das USHMM-Dossier erläutern Erschiessungen, Deportationen und die Ermordung der Kinder.']));
 }
 
 function appendHavelFilm(section) {

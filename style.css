@@ -268,3 +268,9 @@ body {
   border-left-color: #ba8494;
 }
 .station-extras { background: #e0e9f3; }
+
+.evidence-images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-block: 1.5rem; }
+.evidence-images figure { margin: 0; }
+.evidence-images img { aspect-ratio: 4 / 3; object-fit: contain; background: #e3e8ef; }
+video.film-player { background: #000; margin: .7rem 0; }
+@media(max-width: 600px) { .evidence-images { grid-template-columns: 1fr; } }
