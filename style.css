@@ -87,3 +87,46 @@ footer{border-top:1px solid var(--line);padding:1.3rem;text-align:center;color:v
 .source-activity > :last-child { margin-bottom: 0; }
 
 .film-player { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; }
+
+.chapter-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--red);
+  padding: 1rem;
+}
+.chapter-header h2 { font-size: clamp(1.8rem, 3.7vw, 3.1rem); overflow-wrap: anywhere; }
+.chapter-visual { margin: 0; }
+.chapter-visual img { height: clamp(10rem, 25vw, 16rem); object-fit: contain; background: #e9e0d0; }
+.station-nav { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; }
+.station-nav a, .next a {
+  padding: .55rem .7rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: .35rem;
+  text-decoration: none;
+}
+.station-nav a[aria-current] { color: white; background: #152c40; border-color: #152c40; }
+.station { background: var(--white); border: 1px solid var(--line); padding: clamp(1rem, 3vw, 1.8rem); }
+.station > p:last-child { margin-bottom: 0; }
+.station-extras { margin-top: 1rem; padding: .85rem; background: #f4efe4; border: 1px solid var(--line); border-radius: .4rem; }
+.station-extras[open] > summary { margin-bottom: 1rem; }
+.chapter-menu > summary { margin-bottom: .55rem; }
+.orientation-extra { padding-top: 1rem; padding-bottom: 1rem; }
+.orientation-extra[open] > summary { margin-bottom: 1rem; }
+.next + .completion { margin-top: 1rem; }
+@media (max-width: 680px) {
+  .chapter-header { grid-template-columns: 1fr; }
+  .chapter-visual img { height: 13rem; }
+  .chapter-menu[open] #timeline { max-height: 11rem; overflow: auto; }
+}
+.hero {
+  background: linear-gradient(90deg, #152c40 22%, #152c40e8 48%, #152c4040), url('bilder/prag-1900.jpg') center 45% / cover;
+}
+.hero .intro { max-width: 36rem; }
+.chapter-visual img { object-fit: cover; object-position: center 40%; }
+.chapter-visual img[src*="karten/"], .chapter-visual img[src$="weisser-berg.jpg"], .chapter-visual img[src$="gottwald.jpg"] { object-fit: contain; }
+.next { margin-top: .9rem; }

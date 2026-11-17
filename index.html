@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Interaktive Selbstlerneinheit zur tschechischen Geschichte mit historischen Quellen und offenen Aufgaben.">
 <title>Tschechische Geschichte · Selbstlerneinheit</title>
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 <script src="content.js?v=9" defer></script>
 <script src="aufgaben.js?v=6" defer></script>
 <script src="kulturquellen.js?v=7" defer></script>
-<script src="app.js?v=12" defer></script>
+<script src="app.js?v=13" defer></script>
 </head>
 <body>
 <a class="skip" href="#lektion">Zur Lektion</a>
@@ -22,8 +22,15 @@
     <a class="start" href="#karten">Karten vergleichen <span aria-hidden="true">↓</span></a>
   </div>
 </header>
-<section class="orientation" aria-labelledby="orientation-title">
-<h2 id="orientation-title">Prag in vier Bildern</h2>
+<div class="layout">
+  <aside>
+    <div class="progress"><label for="progress" id="progress-label">Lernfortschritt</label><progress id="progress" value="0" max="13" aria-labelledby="progress-label"></progress></div>
+    <details class="chapter-menu" open><summary>Alle Kapitel</summary><nav aria-label="Chronologische Kapitel" id="timeline"></nav></details>
+  </aside>
+  <main id="lektion" tabindex="-1"></main>
+</div>
+<details class="orientation orientation-extra">
+<summary>Prag in vier Bildern · Orientierung</summary>
 <div class="gallery"><figure><img src="bilder/prag-1900.jpg" alt="Das Nationaltheater an der Moldau"><figcaption><strong>1900 · Das Nationaltheater an der Moldau.</strong> Prag gehört um 1900 zu Österreich-Ungarn. Das Nationaltheater gibt der tschechischen Sprache eine öffentliche Bühne. <a href="https://commons.wikimedia.org/wiki/File:Prag_Nationaltheater_1900.jpg">Bildquelle</a></figcaption></figure>
 <figure><img src="bilder/prag-1968.jpg" alt="Menschen mit einer Flagge neben einem brennenden Panzer"><figcaption><strong>1968 · Menschen mit einer Flagge neben einem brennenden Panzer.</strong> Truppen unter sowjetischer Führung beenden den Reformkurs des Prager Frühlings. <a href="https://commons.wikimedia.org/wiki/File:10_Soviet_Invasion_of_Czechoslovakia_-_Flickr_-_The_Central_Intelligence_Agency.jpg">CIA-Sammlung</a></figcaption></figure>
 <figure><img src="bilder/prag-1989.jpg" alt="Demonstrierende auf dem Wenzelsplatz"><figcaption><strong>1989 · Demonstrierende auf dem Wenzelsplatz.</strong> Die Proteste der Samtenen Revolution tragen zum Ende der kommunistischen Herrschaft bei. <a href="https://commons.wikimedia.org/wiki/File:Praha_1989,_Václavské_náměstí,_dav.jpg">ŠJů</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></figcaption></figure>
@@ -32,7 +39,7 @@
 <h3>Wo sind wir, und welche Staaten gab es?</h3>
 <p>Prag liegt an der Moldau und war das Zentrum Böhmens. Böhmen, Mähren und ein Teil Schlesiens gehören heute zu Tschechien. Nach dem Ersten Weltkrieg entstand 1918 die Tschechoslowakei, ein gemeinsamer Staat von Tschechen und Slowaken, in dem auch viele andere Bevölkerungsgruppen lebten. Seit 1993 sind Tschechien und die Slowakei eigenständige Staaten.</p>
 <p>Beginne mit der Staatsgründung von 1918. Lies den Kapiteltext, untersuche ein Bild, einen Film oder eine Tonaufnahme und vergleiche deine Beobachtungen mit der Musterlösung. <a href="#anfang">Zur Vorgeschichte vor 1918</a></p>
-</div></section>
+</div></details>
 <section class="orientation map-atlas" id="karten" aria-labelledby="karten-title">
   <h2 id="karten-title">Regionen und Grenzen im Vergleich</h2>
   <p class="orientation-copy">Suche zuerst Prag in Böhmen und Brünn in Mähren. Schlesien liegt nordöstlich von Mähren und reicht über die heutige tschechisch-polnische Grenze. Die Slowakei liegt östlich der böhmischen Länder. Die drei Vergleichskarten verwenden denselben Ausschnitt und eine gemeinsame Legende. Die Grenzlinien basieren auf ausgerichteten historischen Vektorkarten und heutigen Grenzdaten.</p>
@@ -56,7 +63,7 @@
     <li><span class="map-line internal"></span>Grenze innerhalb der Ersten Republik</li>
   </ul>
   <p class="map-sources">Kartengrundlagen bearbeitet und auf denselben Ausschnitt ausgerichtet. <a href="https://commons.wikimedia.org/wiki/File:First_Czechoslovak_Republic.SVG">Erste Republik</a> und <a href="https://commons.wikimedia.org/wiki/File:Czechoslovakia_1939.SVG">1938/39</a> von Themightyquill und den auf den Dateiseiten genannten Mitwirkenden (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>). Heutige Grenzen aus <a href="https://www.geoboundaries.org/">geoBoundaries</a>. <a href="https://psp.cz/eknih/1996ps/stenprot/008schuz/s008013.htm">Parlamentsprotokoll zu den Grenzkorrekturen von 1997</a></p>
-  <h3>Historische Karten und Detailansichten</h3>
+  <details class="station-extras"><summary>Historische Karten, Detailansichten und Aufgaben</summary>
   <div class="map-grid">
     <figure>
       <h3>Böhmen, Mähren und Schlesien</h3>
@@ -102,14 +109,8 @@
       <details><summary>Musterlösung zu Aufgabe 3 anzeigen</summary><p>Ein Beispiel sind die westlichen und nördlichen Grenzgebiete Böhmens. Sie lagen in der Ersten Republik innerhalb der tschechoslowakischen Aussengrenze. Das Deutsche Reich annektierte sie 1938 nach dem Münchner Abkommen, das Deutschland, Italien, Grossbritannien und Frankreich ohne Beteiligung der tschechoslowakischen Regierung an den eigentlichen Verhandlungen aushandelten. Die politischen Führungen der beiden Teilrepubliken vereinbarten 1992 die Auflösung der Föderation zum Jahreswechsel. Aus ihrer bisherigen inneren Grenze wurde eine internationale Grenze.</p></details>
     </li>
   </ol>
+  </details>
 </section>
-<div class="layout">
-  <aside>
-    <div class="progress"><label for="progress" id="progress-label">Lernfortschritt</label><progress id="progress" value="0" max="13" aria-labelledby="progress-label"></progress></div>
-    <nav aria-label="Chronologische Kapitel" id="timeline"></nav>
-  </aside>
-  <main id="lektion" tabindex="-1"></main>
-</div>
 <footer>CS = Tschechisch · EN = Englisch · DE = Deutsch. Externe Archive öffnen in einem neuen Tab.</footer>
 <noscript>Aktiviere JavaScript, um die Kapitel und Aufgaben zu nutzen.</noscript>
 </body>
