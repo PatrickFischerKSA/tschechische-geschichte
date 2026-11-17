@@ -34,7 +34,13 @@ function updateProgress(current) {
   document.querySelector('#progress-label').textContent = count + ' von ' + chapters.length + ' Kapiteln abgeschlossen';
   timeline.replaceChildren(...chapters.map(chapter => {
     const anchor = link('', '#' + chapter.id);
-    anchor.append(element('span', chapter.era, 'date'), element('span', chapter.title));
+    const preview = element('img');
+    preview.src = chapterVisuals[chapter.id][0];
+    preview.alt = '';
+    preview.loading = 'lazy';
+    const label = element('span', '', 'chapter-label');
+    label.append(element('span', chapter.era, 'date'), element('span', chapter.title));
+    anchor.append(preview, label);
     if (saved[chapter.id] === true) anchor.append(element('small', '✓ Abgeschlossen'));
     if (chapter.id === current.id) anchor.setAttribute('aria-current', 'location');
     return anchor;
@@ -218,7 +224,7 @@ function render(focus = false) {
   const header = element('header', '', 'chapter-header');
   const heading = element('div');
   heading.append(element('p', chapter.era, 'eyebrow'), element('h2', chapter.title), link('Karten vergleichen ↓', '#karten'));
-  header.append(heading, chapterVisual(chapter));
+  header.append(chapterVisual(chapter), heading);
   const outline = element('nav', '', 'station-nav');
   outline.setAttribute('aria-label', 'Lernstationen in diesem Kapitel');
   chapter.sections.forEach(([title], position) => {
@@ -240,10 +246,14 @@ function render(focus = false) {
   else if (index > 0) navigation.append(link('← ' + chapters[index - 1].title, '#' + chapters[index - 1].id));
   if (station + 1 < chapter.sections.length) navigation.append(link('Nächste Station →', stationAddress(chapter, station + 1)));
   else if (index + 1 < chapters.length) navigation.append(link(chapters[index + 1].title + ' →', '#' + chapters[index + 1].id));
-  main.replaceChildren(header, outline, section, navigation);
+  const scenes = element('details', '', 'scene-picker');
+  scenes.append(element('summary', 'Alle Szenen dieses Kapitels · ' + chapter.sections.length), outline);
+  main.replaceChildren(header, section, navigation, scenes);
   if (station === chapter.sections.length - 1 || saved[chapter.id] === true) addCompletionButton(chapter);
   if (focus && requested !== 'karten') {
-    main.focus({preventScroll: true});
+    const chapterTitle = header.querySelector('h2');
+    chapterTitle.tabIndex = -1;
+    chapterTitle.focus({preventScroll: true});
     main.scrollIntoView({block: 'start'});
   }
 }
