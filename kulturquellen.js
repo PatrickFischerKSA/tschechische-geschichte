@@ -115,3 +115,23 @@ const culturalImages = {
   muenchen: {1: ['muenchen-1938.jpg', 'Teilnehmer der Münchner Konferenz am 29. September 1938 im Führerbau.', 'https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-H28788,_M%C3%BCnchener_Abkommen.jpg', 'Bundesarchiv, Bild 183-H28788 · unbekannte Urheberschaft', 'https://creativecommons.org/licenses/by-sa/3.0/de/', 'Das Foto zeigt unter anderem Hitler, Mussolini, Chamberlain und Daladier. Die Zusammensetzung der Runde hilft zu erklären, warum das Kapitel von einem Abkommen über einen abwesenden Staat spricht.']},
   charta: {0: ['smichov-1978.png', 'Strassenbahn und rote Fahnen im Prager Stadtteil Smíchov, 1978.', 'https://commons.wikimedia.org/wiki/File:Tram.Nadrazni.Smichov_Prague.1978.PatrickNicholas.png', 'Patrick Nicholas / Etrusca2000', 'https://creativecommons.org/licenses/by-sa/3.0/', 'Auf dem Bild liegt die Strassenbahnlinie im gleichen Blickfeld wie der Fahnenschmuck zum 30. Jahrestag der kommunistischen Machtübernahme. So wird sichtbar, wie staatliches Gedenken in einen alltäglichen Stadtraum hineinreichte.']}
 };
+
+culturalSources.republik[3] = [
+  ['Die Republik wurde auch im Alltag sichtbar. Alfons Mucha gestaltete ', 'Banknoten für die Tschechoslowakei', 'https://www.muchafoundation.org/en/gallery/themes/theme/slav-e/object/263', '. Vergleiche eine Banknote mit dem Schlussbild seines Slawischen Epos. Auf der Banknote muss das Bild mit Wertangabe und Schrift zusammenwirken. Im Gemälde hat Mucha Raum für eine symbolische Deutung von Geschichte. Welche Motive vermitteln in beiden Fällen Zugehörigkeit?'],
+  ['Leoš Janáček komponierte die ', 'Sinfonietta (1926) · Einführung und Aufführung', 'https://www.youtube.com/watch?v=Or8gMiBhtnw', ' in der Zeit der Ersten Republik. Die festlichen Blechbläserfanfaren geben dem Beginn einen öffentlichen, feierlichen Charakter. Vergleiche diesen musikalischen Auftakt mit Muchas Bildsprache. Wie schaffen Musik und Malerei jeweils einen Eindruck von Feierlichkeit?']
+];
+culturalSources.republik[6].push(
+  ['Das deutschsprachige Prag wird in Egon Erwin Kischs Reportage ', 'Der Fall des Generalstabschefs Redl', 'https://www.gutenberg.org/cache/epub/63991/pg63991-images.html', ' als Raum von Zeitungen, Behörden und persönlichen Kontakten sichtbar. Kisch rekonstruiert einen Spionagefall aus der Habsburgerzeit. Lies den Anfang und achte darauf, wie der Reporter seine eigene Rolle in der Geschichte sichtbar macht.'],
+  ['Franz Kafka schrieb in Prag auf Deutsch. In seiner Parabel ', 'Vor dem Gesetz', 'https://de.wikisource.org/wiki/Vor_dem_Gesetz', ' wartet ein Mann auf Zugang zum Gesetz. Lies den Anfang und das Ende. Wie verändert der letzte Satz des Türhüters den Blick auf das Warten? Kischs Reportage lässt sich daneben als literarisch gestaltete Rekonstruktion eines konkreten Vorgangs lesen.']
+);
+culturalSources.republik[7] = [
+  ['Die Verbindung mit den USA hatte auch eine kulturelle Vorgeschichte. Antonín Dvořák komponierte seine neunte Sinfonie ', 'Aus der Neuen Welt · Aufführung mit Mitgliedern der Tschechischen Philharmonie', 'https://www.youtube.com/watch?v=vRDcDGFThj4', ' während seines Aufenthalts in den USA. Die Sinfonie wurde 1893 in New York uraufgeführt. Sie bietet einen früheren Blick auf transatlantische Beziehungen. Höre, wie sich der Beginn des ersten Satzes von den Fanfaren in Janáčeks Sinfonietta unterscheidet.']
+];
+culturalImages.republik[3] = [
+  'mucha-apotheose.jpg',
+  'Alfons Mucha, Apotheose der Slawen, Schlussbild des Slawischen Epos, 1926.',
+  'https://commons.wikimedia.org/wiki/File:Apotheosis_of_the_Slavs_history_-_Alfons_Mucha.jpg',
+  'Alfons Mucha · gemeinfrei',
+  null,
+  'Das Gemälde ist eine symbolische Geschichtsdeutung aus der Zeit der Ersten Republik. Achte darauf, wie Mucha die Figurengruppen durch Licht und Farbe unterscheidet.'
+];
