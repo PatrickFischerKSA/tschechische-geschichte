@@ -37,7 +37,6 @@ const culturalSources = {
   diktatur: {
     1: [
       ['Die ', 'deutschsprachige Rekonstruktion des Slánský-Prozesses von Radio Prag', 'https://deutsch.radio.cz/slansky-prozess-vor-70-jahren-elf-todesurteile-im-schauprozess-gegen-mitglieder-8767886', ' erklärt, wie eine angebliche Verschwörung konstruiert wurde. Welche Funktion hatte die Herkunft der Angeklagten in der Propaganda?'],
-      ['ARTE Distribution führt ', 'Der Prozess – Prag 1952 (deutsche Fassung; Verleihkatalog)', 'https://distribution.arte.tv/fiche/LE_PROCES_DE_PRAGUE_1952', '. Der Film wertet restaurierte Aufnahmen aus, die ursprünglich der Propaganda dienten. Der Katalogeintrag ist kein frei verfügbarer Stream.'],
       ['In Milan Kunderas Roman ', 'Der Scherz', 'https://english.radio.cz/czech-books-you-must-read-8506310/18', ' wird eine ironische Postkarte als politisches Bekenntnis gelesen. Der Roman von 1967 blickt auf die stalinistische Zeit zurück und zeigt, wie eine alltägliche Geste politische Folgen bekam.']
     ]
   },
@@ -81,17 +80,17 @@ const culturalSources = {
 };
 
 culturalSources.besatzung[3].push(
-  ['Jiří Menzels ', 'Scharf beobachtete Züge (1966), DVD mit deutschen Untertiteln', 'https://shop.trigon-film.org/de/DVD/Jir%C3%AD_Menzel_1', ' verfilmt eine Erzählung Bohumil Hrabals. Der kleine Bahnhof verbindet die Geschichte eines jungen Eisenbahners mit der Besatzung und dem Widerstand. Beobachte, wann aus dem scheinbar unpolitischen Arbeitsalltag eine Situation wird, in der die Figuren Stellung beziehen.'],
-  ['Jan Hřebejks ', 'Wir müssen zusammenhalten (2000), DVD mit deutschen Untertiteln', 'https://www.videobuster.de/dvd-bluray-verleih/103872/wir-muessen-zusammenhalten', ' erzählt vom Versteck eines jüdischen Nachbarn in einer besetzten tschechischen Stadt. Die Gefahr entsteht auch durch Besuche von Menschen, die einander kennen. Vergleiche die Handlungsmöglichkeiten im privaten Raum mit denen der Figuren am Bahnhof bei Menzel.']
+  ['Jiří Menzels «Scharf beobachtete Züge (1966)» verfilmt eine Erzählung Bohumil Hrabals. Der kleine Bahnhof verbindet die Geschichte eines jungen Eisenbahners mit der Besatzung und dem Widerstand.'],
+  ['Jan Hřebejks «Wir müssen zusammenhalten (2000)» erzählt vom Versteck eines jüdischen Nachbarn in einer besetzten tschechischen Stadt. Die Gefahr entsteht auch durch Besuche von Menschen, die einander kennen.']
 );
 culturalSources.diktatur[0] = [
-  ['Menzels ', 'Lerchen am Faden (1969), DVD mit deutschen Untertiteln', 'https://shop.trigon-film.org/de/DVD/Jir%C3%AD_Menzel_1', ' spielt auf einem Schrottplatz während der frühen kommunistischen Herrschaft. Menschen aus verschiedenen Berufen müssen dort arbeiten. Die Zensur hielt den Film bis nach 1989 zurück. Damit ist er zugleich eine spätere Darstellung der frühen Diktatur und ein Beispiel für die Kulturpolitik der Normalisierung.']
+  ['Menzels «Lerchen am Faden (1969)» spielt auf einem Schrottplatz während der frühen kommunistischen Herrschaft. Menschen aus verschiedenen Berufen müssen dort arbeiten. Die Zensur hielt den Film bis nach 1989 zurück. Damit ist er zugleich eine spätere Darstellung der frühen Diktatur und ein Beispiel für die Kulturpolitik der Normalisierung.']
 ];
 (culturalSources.fruehling[0] ??= []).push(
-  ['Miloš Formans ', 'Der Feuerwehrball (1967) in der Forman-Box mit deutschen Untertiteln', 'https://www.jpc.de/jpcng/movie/detail/-/art/milos-forman-box/hnum/8938066', ' zeigt, wie eine Tombola und ein Schönheitswettbewerb ausser Kontrolle geraten. Die Komödie der Tschechoslowakischen Neuen Welle macht sichtbar, wie ein Entscheidungsgremium Verantwortung hin- und herschiebt. Warum eignet sich gerade das scheinbar unpolitische Vereinsfest für eine Satire über Autorität?']
+  ['Miloš Formans «Der Feuerwehrball (1967)» zeigt, wie eine Tombola und ein Schönheitswettbewerb ausser Kontrolle geraten. Die Komödie der Tschechoslowakischen Neuen Welle macht sichtbar, wie ein Entscheidungsgremium Verantwortung hin- und herschiebt.']
 );
 culturalSources.revolution[0].push(
-  ['In Jan Svěráks ', 'Kolya (1996), DVD mit deutschen Untertiteln', 'https://www.videobuster.de/dvd-bluray-verleih/73780/kolya', ' muss ein Prager Musiker kurz vor dem Ende des Regimes für einen russischen Jungen sorgen. Ihre Verständigung ist eine private Geschichte vor dem Hintergrund des Umbruchs. Vergleiche, welche Fragen der Spielfilm über den Alltag und der Tagesschau-Beitrag über die öffentliche Erinnerung beantworten.']
+  ['In Jan Svěráks «Kolya (1996)» muss ein Prager Musiker kurz vor dem Ende des Regimes für einen russischen Jungen sorgen. Ihre Verständigung ist eine private Geschichte vor dem Hintergrund des Umbruchs. Vergleiche, welche Fragen der Spielfilm über den Alltag und der Tagesschau-Beitrag über die öffentliche Erinnerung beantworten.']
 );
 culturalSources.charta[1].push(
   ['Josef Škvorecký und Zdena Salivarová gründeten im kanadischen Exil den ', 'Verlag Sixty-Eight Publishers', 'https://english.radio.cz/josef-skvorecky-8091331', '. So konnten tschechische und slowakische Bücher ausserhalb der staatlichen Zensur erscheinen. Dieser Weg ergänzte den Samisdat, also das private Vervielfältigen und Weitergeben von Texten im Land.']
@@ -124,7 +123,7 @@ culturalImages.republik[3] = [
 ];
 
 culturalSources.fruehling[1].push(
-  ['Philip Kaufmans Verfilmung von Milan Kunderas ', 'Die unerträgliche Leichtigkeit des Seins (1988), DVD mit deutschen Untertiteln', 'https://www.videobuster.de/dvd-bluray-verleih/66379/die-unertraegliche-leichtigkeit-des-seins', ' verbindet den Einmarsch von 1968 mit den Entscheidungen von Tereza, Tomáš und Sabina. Juliette Binoche spielt Tereza, die als Fotografin die Besetzung auf der Strasse festhält. Vergleiche ihre Perspektive mit den Archivaufnahmen im Abschnitt. Was zeigt die Spielfilmszene über das Risiko des Fotografierens, und was lässt sich mit den zeitgenössischen Bildern belegen?']
+  ['Philip Kaufmans Verfilmung von Milan Kunderas «Die unerträgliche Leichtigkeit des Seins (1988)» verbindet den Einmarsch von 1968 mit den Entscheidungen von Tereza, Tomáš und Sabina. Juliette Binoche spielt Tereza, die als Fotografin die Besetzung auf der Strasse festhält.']
 );
 (culturalSources.revolution[2] ??= []).push(
   ['Für ihren Dokumentarfilm «Občan Havel» (2008) begleiten Pavel Koutecký und Miroslav Janek Václav Havel hinter die Kulissen der Politik. Die Dreharbeiten begannen 1992, als die Tschechoslowakei vor der Auflösung stand. Havel, bis 1992 Präsident der Tschechoslowakei, kandidierte für das Präsidentenamt der neuen Tschechischen Republik.']
