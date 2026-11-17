@@ -163,8 +163,7 @@ function appendCulturalSources(section, chapterId, index) {
     prisonAudio.setAttribute('aria-label', 'Lenka Reinerová – Erlebte Geschichten, WDR 5');
     prisonAudio.style.width = '100%';
     prisonAudio.addEventListener('play', () => {
-      soundtrack.pause();
-      closeMarta();
+      pauseBackgroundMusic();
     });
     section.append(prisonAudio, link('Hörprobe beim WDR öffnen ↗', 'https://www1.wdr.de/radio/wdr5/sendungen/erlebtegeschichten/reinerovalenka102.html', true));
     for (const [range, start, question, answer] of [
@@ -177,8 +176,7 @@ function appendCulturalSources(section, chapterId, index) {
       const jump = element('button', 'Hörstelle ' + range + ' starten');
       jump.type = 'button';
       jump.addEventListener('click', async () => {
-        soundtrack.pause();
-        closeMarta();
+        pauseBackgroundMusic();
         prisonAudio.currentTime = start;
         try { await prisonAudio.play(); } catch { prisonAudio.focus(); }
       });
@@ -218,7 +216,7 @@ function appendRudisSources(section) {
   section.append(element('h4', 'Kafka Band – Literatur wird Musik'));
   section.append(element('p', 'Rudiš verbindet in der Kafka Band literarische Texte mit Musik. Das Projekt arbeitet mehrsprachig und greift Kafkas Romane auf. Die offizielle Bandseite verweist auf diese Aufnahme zu «Der Process».'));
   const music = element('iframe', '', 'film-player');
-  music.src = 'https://www.youtube-nocookie.com/embed/TCBJ4-QIkdc';
+  music.src = 'https://www.youtube-nocookie.com/embed/TCBJ4-QIkdc?enablejsapi=1&origin=' + encodeURIComponent(location.origin);
   music.title = 'Kafka Band – Der Process, von der offiziellen Bandseite verlinkte Aufnahme';
   music.loading = 'lazy';
   music.allow = 'fullscreen; picture-in-picture';
@@ -282,7 +280,7 @@ function appendAnthropoidMedia(section) {
   section.append(element('h4', 'Das Attentat erklären'));
   section.append(element('p', 'Der deutschsprachige Kalenderblatt-Beitrag «27.5.1942: Auf Reinhard Heydrich wird ein Attentat verübt» erläutert den Anschlag. Die YouTube-Veröffentlichung trägt die Kennzeichnung SWR und stammt vom Kanal Kalenderblatt. Laufzeit 3:26 Minuten.'));
   const attack = element('iframe', '', 'film-player');
-  attack.src = 'https://www.youtube-nocookie.com/embed/iUtNlkNn9-U';
+  attack.src = 'https://www.youtube-nocookie.com/embed/iUtNlkNn9-U?enablejsapi=1&origin=' + encodeURIComponent(location.origin);
   attack.title = 'Deutschsprachiger Kurzbeitrag zum Attentat auf Heydrich';
   attack.loading = 'lazy';
   attack.allow = 'fullscreen; picture-in-picture';
@@ -309,8 +307,7 @@ function appendAnthropoidMedia(section) {
   captions.default = true;
   video.append(captions);
   video.addEventListener('play', () => {
-    soundtrack.pause();
-    closeMarta();
+    pauseBackgroundMusic();
   });
   section.append(video, link('Archivfilm und Herkunft beim USHMM ↗', 'https://encyclopedia.ushmm.org/content/en/film/destruction-of-lidice', true));
   section.append(sourceActivity('Lidice · Zerstörung beobachten', null, [null,
@@ -480,7 +477,7 @@ function startMarta() {
   soundtrack.pause();
   const player = element('iframe', '', 'film-player');
   player.title = 'Marta Kubišová – Modlitba pro Martu';
-  player.src = 'https://www.youtube-nocookie.com/embed/8IzKWTcK1po?autoplay=1&playsinline=1';
+  player.src = 'https://www.youtube-nocookie.com/embed/8IzKWTcK1po?autoplay=1&playsinline=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin);
   player.allow = 'autoplay; fullscreen';
   martaPlayer.hidden = false;
   martaVideo.replaceChildren(player);
@@ -489,7 +486,56 @@ soundtrack.addEventListener('ended', startMarta);
 document.querySelector('#marta-start').addEventListener('click', startMarta);
 main.addEventListener('click', event => {
   if (event.target.closest('a[target="_blank"]')) {
-    soundtrack.pause();
-    closeMarta();
+    pauseBackgroundMusic();
   }
 });
+
+// The soundtrack lives outside main, so chapter rendering preserves its playback.
+const youtubePlayers = new WeakMap();
+const vimeoPlayers = new WeakMap();
+
+function pauseBackgroundMusic() {
+  soundtrack.pause();
+  const frame = martaVideo.querySelector('iframe');
+  const player = frame && youtubePlayers.get(frame);
+  if (player && typeof player.pauseVideo === 'function') player.pauseVideo();
+}
+
+function registerEmbeddedPlayers() {
+  document.querySelectorAll('iframe').forEach(frame => {
+    const url = new URL(frame.src, location.href);
+    if (url.hostname === 'www.youtube-nocookie.com' && window.YT?.Player && !youtubePlayers.has(frame)) {
+      const player = new YT.Player(frame, {
+        events: {
+          onReady(event) {
+            if (frame.closest('#marta-video')) event.target.setVolume(25);
+          },
+          onStateChange(event) {
+            if (event.data !== 1 || !frame.isConnected) return;
+            if (frame.closest('#marta-video')) soundtrack.pause();
+            else pauseBackgroundMusic();
+          }
+        }
+      });
+      youtubePlayers.set(frame, player);
+    }
+    if (url.hostname === 'player.vimeo.com' && window.Vimeo?.Player && !vimeoPlayers.has(frame)) {
+      const player = new Vimeo.Player(frame);
+      player.on('play', pauseBackgroundMusic);
+      vimeoPlayers.set(frame, player);
+    }
+  });
+}
+
+main.addEventListener('play', pauseBackgroundMusic, true);
+const mediaObserver = new MutationObserver(registerEmbeddedPlayers);
+mediaObserver.observe(main, {childList: true, subtree: true});
+mediaObserver.observe(martaVideo, {childList: true});
+window.onYouTubeIframeAPIReady = registerEmbeddedPlayers;
+for (const source of ['https://www.youtube.com/iframe_api', 'https://player.vimeo.com/api/player.js']) {
+  const script = document.createElement('script');
+  script.src = source;
+  script.async = true;
+  script.addEventListener('load', registerEmbeddedPlayers);
+  document.head.append(script);
+}
