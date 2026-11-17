@@ -184,7 +184,6 @@ function appendAnthropoidMedia(section) {
   video.controls = true;
   video.preload = 'none';
   video.playsInline = true;
-  video.crossOrigin = 'anonymous';
   video.poster = 'bilder/lidice-1942.jpg';
   video.src = 'https://encyclopedia.ushmm.org/asset/c39694ea-6446-430e-910b-3d8fd4a90e75.mp4';
   const captions = element('track');
