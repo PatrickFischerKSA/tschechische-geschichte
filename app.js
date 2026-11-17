@@ -115,6 +115,31 @@ function appendSectionSources(section, chapter, index) {
   }
 }
 
+function appendCulturalSources(section, chapterId, index) {
+  const photo = culturalImages[chapterId]?.[index];
+  if (photo) {
+    const [file, caption, url, credit, license, context] = photo;
+    const figure = element('figure');
+    const picture = element('img');
+    picture.src = 'bilder/' + file;
+    picture.alt = caption;
+    picture.loading = 'lazy';
+    const description = element('figcaption', caption + ' ');
+    description.append(link(credit, url, true));
+    if (license) description.append(' · ', link('Lizenz', license, true), ' · verkleinert');
+    figure.append(picture, description);
+    section.append(figure, element('p', context));
+  }
+  for (const parts of culturalSources[chapterId]?.[index] || []) {
+    const paragraph = element('p');
+    for (let part = 0; part < parts.length; part += 3) {
+      paragraph.append(parts[part]);
+      if (parts[part + 1]) paragraph.append(link(parts[part + 1], parts[part + 2], true));
+    }
+    section.append(paragraph);
+  }
+}
+
 function sourceActivity(kind, source, exercise) {
   const activity = element('div', '', 'source-activity');
   activity.append(element('p', kind, 'date'));
@@ -145,6 +170,7 @@ function render(focus = false) {
   chapter.sections.forEach(([title, body], index) => {
     const section = element('section', '', 'reading');
     section.append(element('h3', title), element('p', body));
+    appendCulturalSources(section, chapter.id, index);
     appendSectionSources(section, chapter, index);
     main.append(section);
   });
