@@ -178,6 +178,11 @@ function appendAnthropoidMedia(section) {
   attack.loading = 'lazy';
   attack.allow = 'fullscreen; picture-in-picture';
   section.append(attack, link('Beitrag auf YouTube öffnen ↗', 'https://www.youtube.com/watch?v=iUtNlkNn9-U', true));
+  section.append(sourceActivity('Attentatsfilm · Bildanalyse', link('Ausschnitt ab 00:00 öffnen ↗', 'https://www.youtube.com/watch?v=iUtNlkNn9-U&t=0s', true), [null,
+    'Betrachte 00:00–00:15. Wie wird Heydrich im Bild dargestellt? Welche Informationen über seine Macht und Verantwortung lassen sich aus diesem Bild allein gewinnen?',
+    'Zu sehen ist ein Schwarzweissporträt Heydrichs in Uniform, mit Abzeichen und einer geordneten, repräsentativen Haltung. Das Bild stellt ihn als ranghohen Funktionsträger dar. Seine konkreten Aufgaben im NS-Terrorapparat und seine Verantwortung für Verbrechen werden durch das Porträt allein nicht erklärt. Dafür brauchen wir den Kommentar und den historischen Kontext.',
+    '00:00–00:15'
+  ]));
   section.append(element('h4', 'Lidice in historischen Filmaufnahmen'));
   section.append(element('p', 'Der einminütige Archivfilm «Destruction of Lidice» zeigt die Zerstörung des Dorfes. Die deutschen Untertitel sind ergänzende historische Erläuterungen dieser Lernstation. Sie ordnen die Bilder anhand des USHMM-Dossiers ein.'));
   const video = element('video', '', 'film-player');
@@ -198,7 +203,16 @@ function appendAnthropoidMedia(section) {
     closeMarta();
   });
   section.append(video, link('Archivfilm und Herkunft beim USHMM ↗', 'https://encyclopedia.ushmm.org/content/en/film/destruction-of-lidice', true));
-  section.append(sourceActivity('Archivfilm untersuchen · 00:00–01:01', null, [null, 'Beschreibe zwei sichtbare Spuren der Zerstörung. Was kann der Film über Lidice belegen, und welche Informationen über die Opfer musst du dem Stationstext entnehmen?', 'Zerstörte Häuser und Trümmer dokumentieren die Zerstörung des Ortes. Über die Namen, die Zahl und das weitere Schicksal der Opfer geben diese Bilder allein keine ausreichende Auskunft. Der Stationstext und das USHMM-Dossier erläutern Erschiessungen, Deportationen und die Ermordung der Kinder.']));
+  section.append(sourceActivity('Lidice · Zerstörung beobachten', null, [null,
+    'Betrachte 00:00–00:10. Was verändert sich in der Landschaft durch die Explosion und die aufsteigende Wolke? Beschreibe zuerst das Sichtbare. Erläutere dann mit dem Stationstext, warum diese Bilder zu einer gezielten Zerstörung gehören.',
+    'Eine Explosion schleudert Material in die Höhe. Eine dichte Wolke breitet sich über dem Boden aus und verdeckt Teile der Landschaft. Der Stationstext ordnet die Aufnahme in die systematische Zerstörung Lidices ein. Aus diesem kurzen Bild allein lassen sich weder die Identität der Ausführenden noch das Schicksal der Einwohner erschliessen.',
+    '00:00–00:10'
+  ]));
+  section.append(sourceActivity('Lidice · Ruinen als Quelle', null, [null,
+    'Halte bei 00:45 an. Beschreibe zwei sichtbare Schäden an den Häusern. Was belegt die Aufnahme, und welche Informationen über die Opfer musst du anderen Quellen entnehmen?',
+    'Die Aufnahme zeigt stehen gebliebene Giebel und freiliegende Dachkonstruktionen. Ganze Dachflächen fehlen, Teile der Gebäude sind zerstört. Das Bild belegt schwere Zerstörungen an der Bebauung. Wie viele Menschen ermordet wurden und wohin Frauen und Kinder verschleppt wurden, lässt sich daraus nicht ablesen. Diese Angaben liefern das USHMM-Dossier und der Stationstext.',
+    '00:45 · Standbild'
+  ]));
 }
 
 function appendHavelFilm(section) {
