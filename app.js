@@ -167,6 +167,25 @@ function appendCulturalSources(section, chapterId, index) {
       closeMarta();
     });
     section.append(prisonAudio, link('Hörprobe beim WDR öffnen ↗', 'https://www1.wdr.de/radio/wdr5/sendungen/erlebtegeschichten/reinerovalenka102.html', true));
+    for (const [range, start, question, answer] of [
+      ['00:00–00:43', 0, 'Wie werden Nummer und Melderegel im Haftalltag eingesetzt? Was kritisiert Reinerová mit ihrer ironischen Bemerkung am Schluss des Ausschnitts?', 'Sie wird durch eine Nummer bezeichnet und muss bei jedem Öffnen der Zellentür förmlich Meldung machen, auch bei der Essensausgabe. Die Ironie am Schluss verweist darauf, dass sie die verschlossene Zelle ohnehin nicht verlassen konnte. Die Routine zwingt sie trotzdem zur wiederholten Unterordnung.'],
+      ['00:43–02:18', 43, 'Rekonstruiere den Weg von der Entlassung aus dem Rundfunk bis zur Abholung. Welche Einzelheiten zeigen, wie wenig sie die Gefahr auf sich selbst bezieht?', 'Nach der fristlosen Entlassung sucht sie eine neue Stelle und beteiligt sich an Gartenarbeiten. Nach ihrer Heimkehr holen zwei Männer sie ab. Selbst zum Händewaschen bleibt keine Zeit. Ihre Schilderung betont, dass sie den politischen Zusammenhang damals nicht erkannte.'],
+      ['02:18–03:36', 138, 'Warum bittet sie um einen Anruf zu Hause? Wie reagiert der Verhörende? Erkläre, was diese Episode über ihre damaligen Erwartungen und ihre spätere Selbstbeurteilung zeigt.', 'Sie will ihre Familie informieren, weil sie gewöhnlich über Nacht nach Hause kommt. Der überraschte Verhörende erlaubt den Anruf. Rückblickend beschreibt sie ihre damalige Ahnungslosigkeit. Sie erwartete weiterhin eine alltägliche Erklärung für eine Situation, deren Bedrohlichkeit sie noch nicht erfasste.'],
+      ['04:18–06:17', 258, 'Wie verbindet sie Orientierungslosigkeit, Häftlingskleidung und Waschen in der Zelle? Welche frühere Hafterfahrung zieht sie zum Vergleich heran?', 'Beim Transport werden ihr die Augen verbunden. Sie berichtet, das Gefängnis erst viel später im Fernsehen gesehen zu haben. Häftlingskleidung empfindet sie als Vorverurteilung und vergleicht sie mit der Zivilkleidung in französischer Untersuchungshaft. In der Zelle muss sie beim Waschen an einem Rohr über dem Abtritt balancieren.']
+    ]) {
+      const activity = sourceActivity('WDR-Hörprobe', null, [null, question, answer, range]);
+      const jump = element('button', 'Hörstelle ' + range + ' starten');
+      jump.type = 'button';
+      jump.addEventListener('click', async () => {
+        soundtrack.pause();
+        closeMarta();
+        prisonAudio.currentTime = start;
+        try { await prisonAudio.play(); } catch { prisonAudio.focus(); }
+      });
+      activity.prepend(jump);
+      section.append(activity);
+    }
+
     section.append(element('h4', 'Festnahme, Zelle und Verhör – längere Lesepassage'));
     section.append(element('p', 'Lies im verlinkten Deutschlandfunk-Beitrag die Abschnitte von ihrer Festnahme bis zum Verhör über ihre jüdische Herkunft. Der Text enthält längere Äusserungen Reinerovás und Auszüge aus ihrem Haftbericht. Die folgenden Aufgaben nennen jeweils den Anfang der passenden Passage.'));
     section.append(link('Lesepassage frei beim Deutschlandfunk öffnen ↗', 'https://www.deutschlandfunk.de/lenka-reinerova-alle-farben-der-sonne-und-der-nacht-100.html', true));
@@ -180,6 +199,43 @@ function appendCulturalSources(section, chapterId, index) {
     }
   }
   if (chapterId === 'revolution' && index === 2) appendHavelFilm(section);
+  if (chapterId === 'gegenwart' && index === 4) appendRudisSources(section);
+}
+
+function appendRudisSources(section) {
+  section.append(element('h4', 'Kafka Band – Literatur wird Musik'));
+  section.append(element('p', 'Rudiš verbindet in der Kafka Band literarische Texte mit Musik. Das Projekt arbeitet mehrsprachig und greift Kafkas Romane auf. Die offizielle Bandseite verweist auf diese Aufnahme zu «Der Process».'));
+  const music = element('iframe', '', 'film-player');
+  music.src = 'https://www.youtube-nocookie.com/embed/TCBJ4-QIkdc';
+  music.title = 'Kafka Band – Der Process, von der offiziellen Bandseite verlinkte Aufnahme';
+  music.loading = 'lazy';
+  music.allow = 'fullscreen; picture-in-picture';
+  section.append(music, link('Kafka Band · offizielle Seite und weitere Aufnahmen ↗', 'https://kafkaband.eu/', true));
+  section.append(sourceActivity('Literatur hören', null, [null, 'Wähle einen kurzen Moment. Beschreibe, wie Stimme, Wiederholung und Instrumente wirken. Welche Wirkung könnte die musikalische Gestaltung einer Kafka-Lektüre hinzufügen? Belege deine Deutung mit einer hörbaren Beobachtung.', 'Eine begründete Antwort nennt einen konkreten Klang oder eine Wiederholung und erläutert deren Wirkung, etwa Spannung oder Beharrlichkeit. Die Musik legt Tempo und Betonung fest. Beim stillen Lesen gestaltet die lesende Person diese selbst. Unterschiedliche Beobachtungen und Deutungen sind möglich.']));
+  section.append(element('h4', 'Alois Nebel – Geschichte in Schwarz und Weiss'));
+  section.append(element('p', 'Rudiš schreibt die Texte, Jaromír 99 zeichnet. Im Mittelpunkt steht ein Eisenbahner im tschechisch-polnischen Grenzland. Die Trilogie verbindet seinen Alltag am Ende der 1980er-Jahre mit Erinnerungen an Krieg und Vertreibung. Die offizielle Buchseite bietet einzelne Comicseiten. Die zusätzliche zehnseitige Verlagsleseprobe stammt aus «Alois Nebel – Leben nach Fahrplan».'));
+  const gallery = element('div', '', 'evidence-images');
+  for (const page of [39,96]) {
+    const figure = element('figure');
+    const imageLink = link('', 'https://www.aloisnebel.de/img/' + page + '.jpg', true);
+    const image = element('img');
+    image.src = imageLink.href;
+    image.alt = 'Alois Nebel, deutsche Comicseite ' + page + ' aus der offiziellen Leseauswahl';
+    image.loading = 'lazy';
+    imageLink.append(image);
+    figure.append(imageLink, element('figcaption', 'Comicseite ' + page + ' · Jaroslav Rudiš / Jaromír 99 · Übersetzung Eva Profousová · Voland & Quist. Zum Vergrössern öffnen.'));
+    gallery.append(figure);
+  }
+  section.append(gallery, link('Offizielle Buchseite mit weiteren Comic-Auszügen ↗', 'https://www.aloisnebel.de/', true));
+  const preview = element('iframe');
+  preview.src = 'https://www.voland-quist.de/wp-content/uploads/2021/02/Leseprobe-Alios-Nebel.pdf#page=4';
+  preview.title = 'Zehnseitige deutsche Verlagsleseprobe aus Alois Nebel – Leben nach Fahrplan';
+  preview.loading = 'lazy';
+  preview.style.width = '100%';
+  preview.style.height = '34rem';
+  section.append(preview, link('Deutsche PDF-Leseprobe frei öffnen ↗', 'https://www.voland-quist.de/wp-content/uploads/2021/02/Leseprobe-Alios-Nebel.pdf', true));
+  section.append(sourceActivity('Comic lesen · PDF-Seite 4, gedruckte Seite 8', null, [null, 'Lies «Werbung als Waffe». Wie wechseln die vier Bilder zwischen Gespräch und Erinnerung? Welche Erwartungen an den Filmauftritt werden enttäuscht? Erläutere, wie daraus eine Pointe über Werbung entsteht.', 'Das Gespräch über zusätzliche Einnahmen der Bahn führt zu einer Erinnerung an einen Werbedreh. Nebel stellt sich als Darsteller zur Verfügung. Der Regisseur versteht seine Alltagserfahrung anders, als er erwartet. Der Gegensatz zwischen Selbstbild und Vermarktung erzeugt die Komik.']));
+  section.append(sourceActivity('Figuren und Grenzland · PDF-Seiten 2–3', null, [null, 'Wähle zwei Figuren aus den Porträts. Welche Berufe, Sprachen oder Herkunftsorte verbinden die Lebensgeschichten? Erkläre, welches Bild der Region daraus entsteht.', 'Die Figuren kommen unter anderem aus Böhmen, Mähren, Polen und der Slowakei. Berufe und persönliche Kontakte verbinden unterschiedliche Orte. Die Region erscheint als Raum alltäglicher Begegnungen über sprachliche und staatliche Grenzen hinweg.']));
 }
 
 function appendAnthropoidMedia(section) {

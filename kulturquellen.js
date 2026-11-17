@@ -142,3 +142,8 @@ culturalSources.charta[1].push(
 culturalSources.besatzung[3].push(
   ['Das ', 'Dossier des US Holocaust Memorial Museum zu Lidice', 'https://encyclopedia.ushmm.org/content/en/article/lidice', ' verbindet historische Fotografien mit der Geschichte der verschleppten Kinder. Untersuche das Foto von SS-Männern zwischen den Trümmern. Was lässt sich daran über die Zerstörung erkennen? Welche Informationen über das Schicksal der Menschen liefert erst der Begleittext?']
 );
+
+chapters.find(chapter => chapter.id === 'gegenwart').sections.push([
+  'Jaroslav Rudiš – Grenzland, Comics und Kafka Band',
+  'Jaroslav Rudiš, geboren 1972, schreibt auf Tschechisch und Deutsch. In seinen Büchern begegnen sich Menschen, Sprachen und Erinnerungen an den Grenzen Mitteleuropas. Die Eisenbahn ist dabei oft ein Ort, an dem unterschiedliche Lebensgeschichten zusammenlaufen. Mit dem Zeichner und Musiker Jaromír 99 entwickelte er «Alois Nebel». In der Kafka Band verbindet er Literatur mit Musik. Beide Arbeiten führen die mehrsprachige Kulturgeschichte dieses Kurses in die Gegenwart.'
+]);
