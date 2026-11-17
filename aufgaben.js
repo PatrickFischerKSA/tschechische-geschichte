@@ -128,3 +128,9 @@ const mediaTasks = {
     ]
   ]
 };
+
+mediaTasks.besatzung.push([
+  'lidice',
+  'Erkläre den Zusammenhang zwischen dem Attentat und dem Massaker von Lidice. Welche Behauptung verbreiteten die Besatzer, und wer trug die Verantwortung für die Ermordung der Zivilbevölkerung?',
+  'Nach Heydrichs Tod wählten die deutschen Machthaber Lidice für eine Terroraktion aus. Sie behaupteten fälschlich, die Bewohner hätten die Attentäter unterstützt. Polizei und SS ermordeten und deportierten Menschen und zerstörten das Dorf. Die Verantwortung für diese Verbrechen lag bei den deutschen Entscheidungsträgern und ausführenden Tätern.'
+]);

@@ -145,6 +145,10 @@ function appendCulturalSources(section, chapterId, index) {
     }
     section.append(paragraph);
   }
+  if (chapterId === 'besatzung' && index === 3) {
+    const exercise = mediaTasks.besatzung.find(([source]) => source === 'lidice');
+    section.append(sourceActivity('Widerstand und Besatzungsterror', null, exercise));
+  }
   if (chapterId === 'revolution' && index === 2) appendHavelFilm(section);
 }
 

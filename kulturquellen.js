@@ -138,3 +138,7 @@ const havelScenes = [
 culturalSources.charta[1].push(
   ['Karel Kryl sang im Münchner Exil auch auf Deutsch. Das Konzert ', 'Solidarita, München 1982', 'https://www.supraphonline.cz/album/70754-solidarita-mnichov-1982?v=1', ' galt der polnischen Solidarność. Supraphon bietet Hörproben, darunter ', 'Die innerdeutsche Frage', 'https://www.supraphonline.cz/album/70754-solidarita-mnichov-1982?trackId=909393', ', das Kryl auf Deutsch schrieb. Auch ', 'Der Schimmel', 'https://www.supraphonline.cz/album/70754-solidarita-mnichov-1982/cd?trackId=909402', ' und ', 'Das Zwiegespräch', 'https://www.supraphonline.cz/album/70754-solidarita-mnichov-1982/cd?trackId=909409', ' gehören zu diesem Konzert. Warum konnte der Wechsel zwischen Tschechisch, Deutsch und Polnisch bei einem Konzert im Exil politisch bedeutsam sein?']
 );
+
+culturalSources.besatzung[3].push(
+  ['Das ', 'Dossier des US Holocaust Memorial Museum zu Lidice', 'https://encyclopedia.ushmm.org/content/en/article/lidice', ' verbindet historische Fotografien mit der Geschichte der verschleppten Kinder. Untersuche das Foto von SS-Männern zwischen den Trümmern. Was lässt sich daran über die Zerstörung erkennen? Welche Informationen über das Schicksal der Menschen liefert erst der Begleittext?']
+);
