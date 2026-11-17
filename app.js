@@ -145,6 +145,34 @@ function appendCulturalSources(section, chapterId, index) {
     }
     section.append(paragraph);
   }
+  if (chapterId === 'republik' && index === 6) {
+    section.append(element('h4', 'Ein Abend mit Ondřej Havelka und den Melody Makers'));
+    section.append(element('p', 'Neben Parlament, Sprachenstreit und Wirtschaftskrise gehörten zur Ersten Republik auch Tanzsäle, Schallplatten, Kino und Musiktheater. Amerikanische Jazz- und Tanzmusik wurde in Prag aufgenommen und mit tschechischen Liedern verbunden. Im Osvobozené divadlo, dem «Befreiten Theater», arbeiteten der Komponist Jaroslav Ježek und die Schauspieler Jiří Voskovec und Jan Werich zusammen. Ihre Unterhaltung konnte zugleich Gesellschaftskritik und antifaschistische Satire sein. Nicht jedes Tanzlied war deshalb schon ein politisches Bekenntnis.'));
+    section.append(element('p', 'Wie diese Musikwelt heute wieder aufgeführt wird, zeigen Ondřej Havelka und seine Melody Makers. Havelka gründete das Ensemble 1995. Es pflegt den Klang und den Bühnenstil vor allem der 1930er- und frühen 1940er-Jahre: Instrumente, Gesang, Kleidung, Frisuren und Gestik wirken zusammen. Die Band ist eine heutige Annäherung an die Epoche; ihre Auftritte sind keine Filmaufnahmen aus der Ersten Republik. Ihr Repertoire reicht zudem über deren Ende 1938 hinaus.'));
+    const figure = element('figure');
+    const photo = element('img');
+    photo.src = 'https://melodymakers.cz/files/mm/download/fotografie/3-tugendhat_rada.jpg';
+    photo.alt = 'Ondřej Havelka und die Melody Makers in einer offiziellen Ensemblefotografie';
+    photo.loading = 'lazy';
+    const caption = element('figcaption', 'Heutige Inszenierung einer vergangenen Musikwelt · ');
+    caption.append(link('Pressefotografie und Bildquelle: Melody Makers ↗', 'https://melodymakers.cz/melody-makers/ke-stazeni/', true));
+    figure.append(photo, caption);
+    section.append(figure);
+    section.append(element('p', 'Höre die frei zugängliche Musiksendung von Radio Prague International: Der englischsprachige Beitrag stellt das Ensemble vor und verbindet seine Musik mit der Unterhaltungskultur der Zwischenkriegszeit. Achte auf das Wechselspiel zwischen Gesang und Orchester. Die deutschsprachige Einordnung steht hier im Text.'));
+    const audio = element('audio');
+    audio.controls = true;
+    audio.preload = 'none';
+    audio.style.width = '100%';
+    audio.src = 'https://english.radio.cz/sites/default/files/audios/ondrej-havelka-and-his-melody-makers--1.m4a?timestamp=1590648764&uuid=6afcc23e49ee6';
+    audio.setAttribute('aria-label', 'Ondřej Havelka und seine Melody Makers – Musiksendung auf Englisch, Radio Prague International');
+    section.append(audio, link('Musiksendung mit englischer Einführung beim Sender öffnen ↗', 'https://english.radio.cz/ondrej-havelka-and-his-melody-makers-8248557', true));
+    section.append(sourceActivity('Musik und Geschichtsbild', null, [null,
+      'Warum passt dieses heutige Ensemble in ein Kapitel über 1918–1938? Erkläre anhand der Einführung, was die Aufführung über die damalige Unterhaltungskultur erfahrbar machen kann. Welche zwei Aussagen über die Erste Republik könnte man aus einem solchen Konzert allein nicht ableiten?',
+      'Die Melody Makers lassen ein Repertoire und einen Aufführungsstil der Zwischenkriegszeit wieder hörbar und sichtbar werden. Der Austausch zwischen amerikanischer Tanzmusik und mitteleuropäischer Unterhaltung zeigt kulturelle Verbindungen über Staats- und Sprachgrenzen hinweg. Die 1995 gegründete Band wählt und inszeniert jedoch rückblickend. Ihr Konzert belegt weder, dass alle Bevölkerungsgruppen dieselbe Musik hörten, noch dass das gesellschaftliche Zusammenleben konfliktfrei war. Dafür braucht es beispielsweise zeitgenössische Programme, Presseberichte und Quellen aus verschiedenen sozialen Gruppen.'
+    ]));
+    const note = element('p', '«Tmavomodrý svět» bedeutet «Dunkelblaue Welt». Das Lied von Jaroslav Ježek mit einem Text von Voskovec und Werich gehört in diese Theater- und Musikwelt. Der gleichnamige Spielfilm von Jan Svěrák (2001) handelt dagegen von tschechoslowakischen RAF-Piloten im Zweiten Weltkrieg und ihrer späteren Verfolgung. Lied und Spielfilm sind unterschiedliche Werke.');
+    section.append(note, link('Musikkultur und Aufführungsstil: Selbstdarstellung des Ensembles ↗', 'https://melodymakers.cz/', true));
+  }
   if (chapterId === 'besatzung' && index === 3) {
     appendAnthropoidMedia(section);
     const exercise = mediaTasks.besatzung.find(([source]) => source === 'lidice');
