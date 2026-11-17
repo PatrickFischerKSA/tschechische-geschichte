@@ -265,3 +265,33 @@ document.querySelector('.skip').addEventListener('click', event => {
 });
 window.addEventListener('hashchange', () => render(true));
 render(Boolean(location.hash && location.hash !== '#lektion'));
+
+const soundtrack = document.querySelector('#moldau');
+const soundtrackToggle = document.querySelector('#soundtrack-toggle');
+const soundtrackStatus = document.querySelector('#soundtrack-status');
+soundtrack.volume = 0.25;
+soundtrack.closest('.soundtrack').hidden = false;
+
+function updateSoundtrackButton() {
+  const playing = !soundtrack.paused;
+  soundtrackToggle.textContent = playing ? 'Ⅱ Moldau pausieren' : '♪ Moldau abspielen';
+  soundtrackToggle.setAttribute('aria-pressed', String(playing));
+}
+
+soundtrackToggle.addEventListener('click', async () => {
+  soundtrackStatus.textContent = '';
+  if (!soundtrack.paused) {
+    soundtrack.pause();
+    return;
+  }
+  try {
+    await soundtrack.play();
+  } catch {
+    soundtrackStatus.textContent = 'Die Musik konnte nicht gestartet werden.';
+  }
+});
+soundtrack.addEventListener('play', updateSoundtrackButton);
+soundtrack.addEventListener('pause', updateSoundtrackButton);
+main.addEventListener('toggle', event => {
+  if (event.target.classList.contains('station-extras') && event.target.open) soundtrack.pause();
+}, true);

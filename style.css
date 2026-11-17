@@ -176,3 +176,23 @@ main:focus { outline: none; }
   .chapter-visual img { height: 11rem; }
   .chapter-menu[open] #timeline { max-height: 19rem; }
 }
+
+.soundtrack {
+  position: fixed;
+  z-index: 2;
+  right: max(.65rem, env(safe-area-inset-right));
+  bottom: max(.65rem, env(safe-area-inset-bottom));
+  max-width: calc(100% - 1.3rem);
+}
+.soundtrack button, .soundtrack [role="status"]:not(:empty) {
+  color: #fff0d7;
+  background: #222b2e;
+  border: 1px solid #d5ab7e;
+  border-radius: .3rem;
+  padding: .6rem .8rem;
+  font: inherit;
+  font-size: .85rem;
+}
+.soundtrack button { cursor: pointer; }
+.soundtrack [role="status"]:not(:empty) { display: block; margin-top: .25rem; }
+footer { padding-bottom: 3.5rem; }

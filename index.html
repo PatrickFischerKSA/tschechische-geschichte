@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Interaktive Selbstlerneinheit zur tschechischen Geschichte mit historischen Quellen und offenen Aufgaben.">
 <title>Tschechische Geschichte · Selbstlerneinheit</title>
-<link rel="stylesheet" href="style.css?v=12">
+<link rel="stylesheet" href="style.css?v=13">
 <script src="content.js?v=9" defer></script>
 <script src="aufgaben.js?v=6" defer></script>
 <script src="kulturquellen.js?v=7" defer></script>
-<script src="app.js?v=14" defer></script>
+<script src="app.js?v=15" defer></script>
 </head>
 <body>
 <a class="skip" href="#lektion">Zur Lektion</a>
@@ -22,6 +22,11 @@
     <a class="start" href="#karten">Karten vergleichen <span aria-hidden="true">↓</span></a>
   </div>
 </header>
+<div class="soundtrack" hidden>
+  <button type="button" id="soundtrack-toggle" aria-pressed="false">♪ Moldau abspielen</button>
+  <audio id="moldau" src="ton/moldau.mp3" preload="none" loop></audio>
+  <span id="soundtrack-status" role="status"></span>
+</div>
 <div class="layout">
   <aside>
     <div class="progress"><label for="progress" id="progress-label">Lernfortschritt</label><progress id="progress" value="0" max="13" aria-labelledby="progress-label"></progress></div>
@@ -111,7 +116,7 @@
   </ol>
   </details>
 </section>
-<footer>CS = Tschechisch · EN = Englisch · DE = Deutsch. Externe Archive öffnen in einem neuen Tab.</footer>
+<footer>CS = Tschechisch · EN = Englisch · DE = Deutsch. Externe Archive öffnen in einem neuen Tab. · Hintergrundmusik: Bedřich Smetana, «Vltava» (<a href="https://commons.wikimedia.org/wiki/File:Smetana,_M%C3%A1_vlast_-_Vltava_-_The_Moldau.ogg">Aufnahme und Lizenz</a>).</footer>
 <noscript>Aktiviere JavaScript, um die Kapitel und Aufgaben zu nutzen.</noscript>
 </body>
 </html>
