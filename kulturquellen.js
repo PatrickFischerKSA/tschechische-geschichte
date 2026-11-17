@@ -1,7 +1,8 @@
 const culturalSources = {
   republik: {
     0: [
-      ['Jaroslav Hašeks Roman ', 'Der brave Soldat Švejk', 'https://english.radio.cz/czech-books-you-must-read-8506310/3', ' erschien ab 1921 und blickt auf die Armee der untergegangenen Monarchie zurück. Švejks übertriebener Gehorsam bringt die Widersprüche der Militärbürokratie zum Vorschein. Woran lässt sich in der Episode erkennen, dass der Roman mit den Erwartungen an einen loyalen Soldaten spielt?']
+      ['Warum kann es eine Form des Widerstands sein, einen Befehl ganz wörtlich zu nehmen? Jaroslav Hašeks Roman ', 'Der brave Soldat Švejk', 'https://english.radio.cz/czech-books-you-must-read-8506310/3', ' erschien ab 1921 und blickt auf den Ersten Weltkrieg zurück. Švejk dient in der Armee Österreich-Ungarns. Er beteuert seine Loyalität, doch sein Eifer bringt Vorgesetzte und Vorschriften immer wieder in Schwierigkeiten. Ob er naiv ist oder sich absichtlich so stellt, bleibt oft offen.'],
+      ['Die Fernsehserie ', 'Die Abenteuer des braven Soldaten Schwejk · alle Folgen der YouTube-Playlist', 'https://www.youtube.com/playlist?list=PLihQ1eP06dvHHl01LFUxF_UzZWBQ5HIsR', ' macht aus Hašeks Satire eine Folge von Begegnungen. Wähle eine Folge und halte eine Szene fest, in der Schwejk einen Auftrag erhält. Was erwartet sein Gegenüber? Was tut oder sagt Schwejk? Beschreibe, wie die Szene durch Tonfall, Mimik oder die Reaktion der anderen offenlässt, ob er naiv ist oder die Autorität unterläuft.']
     ],
     6: [
       ['In Prag verbanden Voskovec, Werich und Jaroslav Ježek Theater, Satire und Jazz. ', 'Ježeks Rundfunkbeitrag von 1934 über Jazz', 'https://english.radio.cz/jaroslav-jezek-defence-jazz-1934-8601875', ' zeigt, dass die neue Musik um Anerkennung kämpfen musste. Überlege beim Hören, welche Vorbehalte eine öffentliche Verteidigung des Jazz voraussetzt.'],
