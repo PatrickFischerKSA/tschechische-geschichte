@@ -211,13 +211,19 @@ function appendRudisSources(section) {
   music.loading = 'lazy';
   music.allow = 'fullscreen; picture-in-picture';
   section.append(music, link('Kafka Band · offizielle Seite und weitere Aufnahmen ↗', 'https://kafkaband.eu/', true));
-  section.append(sourceActivity('Literatur hören', null, [null, 'Wähle einen kurzen Moment. Beschreibe, wie Stimme, Wiederholung und Instrumente wirken. Welche Wirkung könnte die musikalische Gestaltung einer Kafka-Lektüre hinzufügen? Belege deine Deutung mit einer hörbaren Beobachtung.', 'Eine begründete Antwort nennt einen konkreten Klang oder eine Wiederholung und erläutert deren Wirkung, etwa Spannung oder Beharrlichkeit. Die Musik legt Tempo und Betonung fest. Beim stillen Lesen gestaltet die lesende Person diese selbst. Unterschiedliche Beobachtungen und Deutungen sind möglich.']));
+  section.append(element('p', 'Die Zeitmarken beziehen sich auf das 1:50 Minuten lange Promo-Livevideo «Der Process» des offiziellen Kafka-Band-Kanals. Werbung zählt nicht zur Filmzeit.'));
+  for (const [range, start, title, question, model] of [
+    ['00:15–00:30', 15, 'Instrumente und Kameraführung', 'Welche Instrumente rückt die Kamera nacheinander ins Bild? Beschreibe, wie Nahaufnahmen und Bühnenlicht die Musik als körperliche Arbeit sichtbar machen.', 'Um 00:15 sieht man einen Bogen an Saiten, um 00:20 das Schlagzeug und um 00:30 eine Trompete. Die Nahaufnahmen zeigen Hände, Instrumententeile und Spielbewegungen. Die dunkle Umgebung und die Lichtakzente konzentrieren den Blick auf das Musizieren.'],
+    ['00:32–01:14', 32, 'Der Türhüter – Macht durch Sprache', 'Welche Bitte wird im deutschen Vortrag zurückgewiesen? Erkläre, wie sich die Möglichkeit eines späteren Zugangs und das gegenwärtige Verbot zueinander verhalten. Wie verstärkt die wiederholte Zurückweisung die Machtposition des Türhüters?', 'Es geht um den erbetenen Eintritt in das Gesetz. Der Türhüter hält die Möglichkeit eines späteren Zugangs offen, verweigert ihn aber jetzt. So bleibt die bittende Person von seiner Entscheidung abhängig. Die wiederkehrende Ablehnung und der Hinweis auf seine Macht verdichten das Verhältnis von Hoffnung, Verbot und Unterordnung.']
+  ]) {
+    section.append(sourceActivity(title, link('Ausschnitt ab ' + range.split('–')[0] + ' auf YouTube öffnen ↗', 'https://www.youtube.com/watch?v=TCBJ4-QIkdc&t=' + start + 's', true), [null, question, model, range]));
+  }
   section.append(element('h4', 'Alois Nebel – Geschichte in Schwarz und Weiss'));
   section.append(element('p', 'Rudiš schreibt die Texte, Jaromír 99 zeichnet. Im Mittelpunkt steht ein Eisenbahner im tschechisch-polnischen Grenzland. Die Trilogie verbindet seinen Alltag am Ende der 1980er-Jahre mit Erinnerungen an Krieg und Vertreibung. Die offizielle Buchseite bietet einzelne Comicseiten. Die zusätzliche zehnseitige Verlagsleseprobe stammt aus «Alois Nebel – Leben nach Fahrplan».'));
   const gallery = element('div', '', 'evidence-images');
-  for (const page of [39,96]) {
+  for (const [file, page] of [[39,39],[96,94]]) {
     const figure = element('figure');
-    const imageLink = link('', 'https://www.aloisnebel.de/img/' + page + '.jpg', true);
+    const imageLink = link('', 'https://www.aloisnebel.de/img/' + file + '.jpg', true);
     const image = element('img');
     image.src = imageLink.href;
     image.alt = 'Alois Nebel, deutsche Comicseite ' + page + ' aus der offiziellen Leseauswahl';
@@ -234,8 +240,14 @@ function appendRudisSources(section) {
   preview.style.width = '100%';
   preview.style.height = '34rem';
   section.append(preview, link('Deutsche PDF-Leseprobe frei öffnen ↗', 'https://www.voland-quist.de/wp-content/uploads/2021/02/Leseprobe-Alios-Nebel.pdf', true));
-  section.append(sourceActivity('Comic lesen · PDF-Seite 4, gedruckte Seite 8', null, [null, 'Lies «Werbung als Waffe». Wie wechseln die vier Bilder zwischen Gespräch und Erinnerung? Welche Erwartungen an den Filmauftritt werden enttäuscht? Erläutere, wie daraus eine Pointe über Werbung entsteht.', 'Das Gespräch über zusätzliche Einnahmen der Bahn führt zu einer Erinnerung an einen Werbedreh. Nebel stellt sich als Darsteller zur Verfügung. Der Regisseur versteht seine Alltagserfahrung anders, als er erwartet. Der Gegensatz zwischen Selbstbild und Vermarktung erzeugt die Komik.']));
-  section.append(sourceActivity('Figuren und Grenzland · PDF-Seiten 2–3', null, [null, 'Wähle zwei Figuren aus den Porträts. Welche Berufe, Sprachen oder Herkunftsorte verbinden die Lebensgeschichten? Erkläre, welches Bild der Region daraus entsteht.', 'Die Figuren kommen unter anderem aus Böhmen, Mähren, Polen und der Slowakei. Berufe und persönliche Kontakte verbinden unterschiedliche Orte. Die Region erscheint als Raum alltäglicher Begegnungen über sprachliche und staatliche Grenzen hinweg.']));
+  for (const [title, source, question, model] of [
+    ['Trilogie · gedruckte Seite 39 · ganzseitiges Einzelbild', 'https://www.aloisnebel.de/img/39.jpg', 'Beschreibe Gesicht, Kabel und Hell-Dunkel-Kontrast. Welche Empfindung erzeugt das Bild? Welche Aussage über den konkreten Ablauf einer Behandlung wäre ohne die Nachbarseiten zu weitgehend?', 'Die Augen sind weit geöffnet, Kabel führen am Kopf entlang, eine gezackte helle Fläche hebt sich vom schwarzen Grund ab. Das kann Angst und körperliche Bedrohung ausdrücken. Welche Behandlung genau stattfindet, durch wen und mit welchem Ergebnis, lässt sich aus dem Einzelbild allein nicht zuverlässig rekonstruieren.'],
+    ['Trilogie · gedruckte Seite 94 · drei übereinanderliegende Panels', 'https://www.aloisnebel.de/img/96.jpg', 'Verfolge die Figur durch die drei Bilder. Wie verändern sich ihre Grösse, ihr Schatten und der Blick in den Flur? Welche Wirkung hat die stumme Bildfolge?', 'Anfangs füllt die dunkle Figur einen grossen Teil des Vordergrunds. Danach wird sie kleiner und entfernt sich zur Tür am Flurende. Der Fluchtpunkt und die Linien des Bodens betonen die Tiefe. Der dunkle Schatten bleibt auffällig. Ohne Text entsteht eine langsame, distanzierende Bewegung, die sich als Einsamkeit oder Beklemmung deuten lässt.'],
+    ['Leben nach Fahrplan · PDF-Seite 4 von 10 · gedruckte Seite 8 · «Werbung als Waffe»', 'https://www.voland-quist.de/wp-content/uploads/2021/02/Leseprobe-Alios-Nebel.pdf#page=4', 'Wie führt das Gespräch über Geld für die Bahn zu Nebels Erinnerung an einen Werbedreh? Erkläre die Pointe am Ende. Welche Möglichkeiten schreibt er Werbung zu?', 'Die Bahn sucht zusätzliche Einnahmen und lässt einen Film im Bahnhof drehen. Nebel erinnert sich an einen früheren Werbeauftritt. Am Schluss wird der Gedanke, Werbung könne einen Bahner sogar zum Präsidenten machen oder umgekehrt, zur Pointe. Werbung erscheint als Mittel, Rollen und öffentliche Bilder zu verändern.'],
+    ['Leben nach Fahrplan · PDF-Seiten 2–3 von 10 · Figurenporträts', 'https://www.voland-quist.de/wp-content/uploads/2021/02/Leseprobe-Alios-Nebel.pdf#page=2', 'Vergleiche die Porträts des Pfarrers auf PDF-Seite 2 und Květas auf PDF-Seite 3. Wie verbinden ihre Biografien Religion, Arbeit und Nachbarländer?', 'Der Pfarrer ist ein polnischer katholischer Geistlicher und sucht einen deutschen Kirchenchor. Květa stammt aus Prag und arbeitete am Hauptbahnhof als Toilettenfrau. Ihr werden Vermittlungen zwischen Tschechen, Deutschen und Polen zugeschrieben. Die humorvollen Porträts verbinden grenzüberschreitende Kontakte mit alltäglichen Lebensläufen.']
+  ]) {
+    section.append(sourceActivity(title, link('Zugehörigen Auszug öffnen ↗', source, true), [null, question, model]));
+  }
 }
 
 function appendAnthropoidMedia(section) {
