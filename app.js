@@ -292,19 +292,28 @@ soundtrackToggle.addEventListener('click', async () => {
 });
 soundtrack.addEventListener('play', updateSoundtrackButton);
 soundtrack.addEventListener('pause', updateSoundtrackButton);
-main.addEventListener('toggle', event => {
-  if (event.target.classList.contains('station-extras') && event.target.open) soundtrack.pause();
-}, true);
-
 const martaPlayer = document.querySelector('#marta-player');
 const martaVideo = document.querySelector('#marta-video');
-document.querySelector('#next-music').addEventListener('click', () => {
-  soundtrack.pause();
+
+function closeMarta() {
+  martaVideo.replaceChildren();
+  martaPlayer.hidden = true;
+}
+
+soundtrack.addEventListener('play', closeMarta);
+document.querySelector('#marta-close').addEventListener('click', closeMarta);
+soundtrack.addEventListener('ended', () => {
+  updateSoundtrackButton();
   const player = element('iframe', '', 'film-player');
   player.title = 'Marta Kubišová – Modlitba pro Martu';
-  player.src = 'https://www.youtube-nocookie.com/embed/8IzKWTcK1po?autoplay=1';
+  player.src = 'https://www.youtube-nocookie.com/embed/8IzKWTcK1po?autoplay=1&playsinline=1';
   player.allow = 'autoplay; fullscreen';
+  martaPlayer.hidden = false;
   martaVideo.replaceChildren(player);
-  martaPlayer.showModal();
 });
-martaPlayer.addEventListener('close', () => martaVideo.replaceChildren());
+main.addEventListener('toggle', event => {
+  if (event.target.classList.contains('station-extras') && event.target.open) {
+    soundtrack.pause();
+    closeMarta();
+  }
+}, true);

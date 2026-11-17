@@ -238,3 +238,20 @@ body { background: var(--paper); }
 .comparison-maps figure:nth-child(2) { border-top-color: #bb929c; }
 .comparison-maps h3 { padding: .9rem; }
 .comparison-maps figcaption { color: var(--muted); border-top: 1px solid #e3e7ed; }
+
+#marta-player {
+  position: fixed;
+  z-index: 3;
+  right: .65rem;
+  bottom: 3.6rem;
+  width: min(21rem, calc(100% - 1.3rem));
+  max-height: calc(100dvh - 4.25rem);
+  overflow: auto;
+  padding: .7rem;
+  border-radius: .35rem;
+  box-shadow: 0 .45rem 1.5rem #27354633;
+}
+#marta-player h2 { font-size: 1.35rem; }
+#marta-player p { margin: .4rem 0; font-size: .85rem; }
+#marta-player button { float: right; font-size: .75rem; }
+#marta-video iframe { min-height: 200px; }
