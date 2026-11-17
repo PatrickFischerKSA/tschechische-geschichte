@@ -196,3 +196,9 @@ main:focus { outline: none; }
 .soundtrack button { cursor: pointer; }
 .soundtrack [role="status"]:not(:empty) { display: block; margin-top: .25rem; }
 footer { padding-bottom: 3.5rem; }
+
+#marta-player { width: min(42rem, calc(100% - 2rem)); max-height: 90vh; padding: 1.25rem; color: var(--ink); background: var(--white); border: 1px solid var(--line); }
+#marta-player::backdrop { background: #101b20bf; }
+#marta-player form { display: flex; justify-content: flex-end; }
+#marta-player button { font: inherit; cursor: pointer; }
+#marta-player h2 { font-size: clamp(1.9rem, 5vw, 3rem); margin: .6rem 0; }

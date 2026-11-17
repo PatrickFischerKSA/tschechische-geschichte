@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Interaktive Selbstlerneinheit zur tschechischen Geschichte mit historischen Quellen und offenen Aufgaben.">
 <title>Tschechische Geschichte · Selbstlerneinheit</title>
-<link rel="stylesheet" href="style.css?v=13">
+<link rel="stylesheet" href="style.css?v=14">
 <script src="content.js?v=9" defer></script>
 <script src="aufgaben.js?v=6" defer></script>
 <script src="kulturquellen.js?v=7" defer></script>
-<script src="app.js?v=15" defer></script>
+<script src="app.js?v=16" defer></script>
 </head>
 <body>
 <a class="skip" href="#lektion">Zur Lektion</a>
@@ -24,9 +24,17 @@
 </header>
 <div class="soundtrack" hidden>
   <button type="button" id="soundtrack-toggle" aria-pressed="false">♪ Moldau abspielen</button>
+  <button type="button" id="next-music">♪ Nächstes Stück</button>
   <audio id="moldau" src="ton/moldau.mp3" preload="none" loop></audio>
   <span id="soundtrack-status" role="status"></span>
 </div>
+<dialog id="marta-player" aria-labelledby="marta-title">
+  <form method="dialog"><button type="submit">Schliessen</button></form>
+  <h2 id="marta-title">Modlitba pro Martu</h2>
+  <p>Marta Kubišová · «Gebet für Marta», 1968</p>
+  <div id="marta-video"></div>
+  <p><a href="https://www.youtube.com/watch?v=8IzKWTcK1po" target="_blank" rel="noopener noreferrer">Offizielles Musikvideo auf YouTube öffnen ↗</a></p>
+</dialog>
 <div class="layout">
   <aside>
     <div class="progress"><label for="progress" id="progress-label">Lernfortschritt</label><progress id="progress" value="0" max="13" aria-labelledby="progress-label"></progress></div>
