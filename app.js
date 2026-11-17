@@ -166,10 +166,60 @@ function appendCulturalSources(section, chapterId, index) {
     audio.src = 'https://english.radio.cz/sites/default/files/audios/ondrej-havelka-and-his-melody-makers--1.m4a?timestamp=1590648764&uuid=6afcc23e49ee6';
     audio.setAttribute('aria-label', 'Ondřej Havelka und seine Melody Makers – Musiksendung auf Englisch, Radio Prague International');
     section.append(audio, link('Musiksendung mit englischer Einführung beim Sender öffnen ↗', 'https://english.radio.cz/ondrej-havelka-and-his-melody-makers-8248557', true));
-    section.append(sourceActivity('Musik und Geschichtsbild', null, [null,
-      'Warum passt dieses heutige Ensemble in ein Kapitel über 1918–1938? Erkläre anhand der Einführung, was die Aufführung über die damalige Unterhaltungskultur erfahrbar machen kann. Welche zwei Aussagen über die Erste Republik könnte man aus einem solchen Konzert allein nicht ableiten?',
-      'Die Melody Makers lassen ein Repertoire und einen Aufführungsstil der Zwischenkriegszeit wieder hörbar und sichtbar werden. Der Austausch zwischen amerikanischer Tanzmusik und mitteleuropäischer Unterhaltung zeigt kulturelle Verbindungen über Staats- und Sprachgrenzen hinweg. Die 1995 gegründete Band wählt und inszeniert jedoch rückblickend. Ihr Konzert belegt weder, dass alle Bevölkerungsgruppen dieselbe Musik hörten, noch dass das gesellschaftliche Zusammenleben konfliktfrei war. Dafür braucht es beispielsweise zeitgenössische Programme, Presseberichte und Quellen aus verschiedenen sozialen Gruppen.'
-    ]));
+    section.append(element('p', 'Vier Hörfenster · Zeitangaben ab Beginn dieses Players, ohne vorgeschaltete Werbung. Die Aufgaben beziehen sich auf die englische Moderation. Mit «Hörstelle starten» springst du zum Ausschnitt; am Ende des Zeitfensters pausiert die Wiedergabe. Über die normalen Audiosteuerungen kannst du die ganze Sendung hören.'));
+    let excerptEnd = null;
+    audio.addEventListener('timeupdate', () => {
+      if (excerptEnd !== null && audio.currentTime >= excerptEnd) {
+        audio.pause();
+        excerptEnd = null;
+      }
+    });
+    // Seeking manually leaves the selected excerpt so the full programme remains usable.
+    audio.addEventListener('seeking', () => {
+      if (excerptEnd !== null && audio.currentTime > excerptEnd) excerptEnd = null;
+    });
+    const listeningWindows = [
+      ['00:00–00:17', 0, 17, 'Eine Reise in welche Zeit?',
+        'Wie bezeichnet die Moderatorin die Band, und in welche Jahrzehnte soll sie die Zuhörenden zurückführen? Was bedeutet diese Ankündigung für den Quellenwert der Aufnahme?',
+        'Die Moderatorin stellt eine tschechische Retroband vor und nennt die 1920er- und 1930er-Jahre. Das kündigt einen heutigen musikalischen Rückblick an. Die Aufnahme kann zeigen, wie diese Zeit später musikalisch vergegenwärtigt wird. Sie ist kein Originalton aus den 1920er- oder 1930er-Jahren. Die Jahreszahl der Bandgründung wird in diesem kurzen Einstieg noch nicht genannt.'],
+      ['02:40–03:20', 160, 200, 'Repertoire und Improvisation',
+        'Welche beiden geografischen Musikkulturen nennt die Moderatorin? Beschreibe, wie laut ihrer Erklärung die Orientierung an alten Aufnahmen mit improvisierten Soli verbunden wird. Worauf führt sie die Beliebtheit der Band zurück?',
+        'Genannt werden amerikanischer und mitteleuropäischer Jazz und Swing der 1920er- und 1930er-Jahre. Sorgfältig erarbeitete Wiedergaben der ursprünglichen Aufnahmen wechseln sich mit improvisierten Soli ab, die sich am Stil der Epoche orientieren. Historische Orientierung bedeutet hier also nicht, jeden Ton unverändert zu kopieren. Die Moderatorin verbindet die Popularität mit der tschechischen Faszination für die Erste Republik. Das ist die Deutung der Sendung; der Ausschnitt liefert dazu keine Publikumsbefragung.'],
+      ['06:00–07:07', 360, 427, 'Havelkas Lebenslauf richtig einordnen',
+        'Welche künstlerischen Tätigkeiten Havelkas werden genannt? Welche Zäsur von 1989 kommt vor, und wann gründete er die Melody Makers? Erkläre mit diesen Angaben, warum man ihn nicht als Musiker der historischen Ersten Republik vorstellen darf.',
+        'Die Moderation nennt Schauspiel, Gesang, Tanz und Regie, die Arbeit am Prager Ypsilon-Theater sowie Film- und Fernsehauftritte. Nach der Samtenen Revolution von 1989 wandte er sich dem Schreiben und der Regie für das Fernsehen zu. Am Ende wird die Gründung der Melody Makers 1995 genannt. Der erzählte Lebenslauf und die Bandgründung liegen Jahrzehnte nach 1918–1938: Havelka führt Musik dieser Epoche später wieder auf. Die ebenfalls erwähnte Oper Nagano bezieht sich auf den tschechischen Olympiasieg von 1998, nicht auf die Erste Republik.'],
+      ['13:40–14:25', 820, 865, 'Wie Vergangenheit auf der Bühne entsteht',
+        'Die Moderatorin gibt Havelkas Erklärung seines Aufführungsstils wieder. Notiere mindestens vier Mittel, mit denen er einen historischen Eindruck herstellen will. Was davon kannst du in einer Radiosendung hören, und was könntest du erst anhand von Bildern oder einem Konzertfilm überprüfen?',
+        'Genannt werden originale Instrumente, Arrangements und eine zeittypische Interpretation sowie die Aufmerksamkeit für Gesten, Kostüme und das gesamte Erscheinungsbild. Das Radio kann Klang, Spielweise und musikalische Gestaltung vermitteln; die Herkunft eines Instruments ist allein am Hören nicht sicher feststellbar. Gesten, Kleidung und Gesamtbild werden hier beschrieben, sind im Ton aber nicht sichtbar. Gerade diese bewusste Planung zeigt, dass ein heutiges Geschichtsbild inszeniert wird. Die Sendung gibt an dieser Stelle eine Erklärung Havelkas wieder, keine zeitgenössische Beschreibung eines Konzerts der 1930er-Jahre.']
+    ];
+    for (const [range, start, end, title, question, answer] of listeningWindows) {
+      const activity = sourceActivity(title, null, [null, question, answer, range]);
+      const jump = element('button', 'Havelka-Hörstelle ' + range + ' starten');
+      jump.type = 'button';
+      jump.addEventListener('click', async () => {
+        pauseBackgroundMusic();
+        excerptEnd = null;
+        try {
+          if (audio.readyState === 0) {
+            audio.load();
+            await new Promise((resolve, reject) => {
+              audio.addEventListener('loadedmetadata', resolve, {once: true});
+              audio.addEventListener('error', reject, {once: true});
+            });
+          }
+          audio.currentTime = start;
+          excerptEnd = end;
+          await audio.play();
+        } catch {
+          excerptEnd = null;
+          const message = element('p', 'Die Hörstelle konnte nicht automatisch starten. Nutze die Audiosteuerung oder öffne die Sendung beim Sender.');
+          message.setAttribute('role', 'status');
+          activity.append(message);
+        }
+      });
+      activity.querySelector('details').before(jump);
+      section.append(activity);
+    }
     const note = element('p', '«Tmavomodrý svět» bedeutet «Dunkelblaue Welt». Das Lied von Jaroslav Ježek mit einem Text von Voskovec und Werich gehört in diese Theater- und Musikwelt. Der gleichnamige Spielfilm von Jan Svěrák (2001) handelt dagegen von tschechoslowakischen RAF-Piloten im Zweiten Weltkrieg und ihrer späteren Verfolgung. Lied und Spielfilm sind unterschiedliche Werke.');
     section.append(note, link('Musikkultur und Aufführungsstil: Selbstdarstellung des Ensembles ↗', 'https://melodymakers.cz/', true));
   }
