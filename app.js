@@ -121,7 +121,7 @@ function appendSectionSources(section, chapter, index) {
   }
 }
 
-function appendCulturalSources(section, chapterId, index, reading) {
+function appendCulturalSources(section, chapterId, index) {
   const photo = culturalImages[chapterId]?.[index];
   if (photo) {
     const [file, caption, url, credit, license, context] = photo;
@@ -134,8 +134,8 @@ function appendCulturalSources(section, chapterId, index, reading) {
     description.append(link(credit, url, true));
     if (license) description.append(' · ', link('Lizenz', license, true), ' · verkleinert');
     figure.append(picture, description);
-    if ('bilder/' + file !== chapterVisuals[chapterId][0]) reading.append(figure);
-    reading.append(element('p', context));
+    if ('bilder/' + file !== chapterVisuals[chapterId][0]) section.append(figure);
+    section.append(element('p', context));
   }
   for (const parts of culturalSources[chapterId]?.[index] || []) {
     const paragraph = element('p');
@@ -235,11 +235,8 @@ function render(focus = false) {
   const [title, body] = chapter.sections[station];
   const section = element('section', '', 'reading station');
   section.append(element('p', 'Station ' + (station + 1) + ' von ' + chapter.sections.length, 'date'), element('h3', title), element('p', body));
-  const extras = element('details', '', 'station-extras');
-  extras.append(element('summary', chapter.id === 'revolution' && station === 2 ? 'Film: Občan Havel und Aufgaben' : 'Quellen, Vertiefung und Aufgaben'));
-  appendCulturalSources(extras, chapter.id, station, section);
-  appendSectionSources(extras, chapter, station);
-  if (extras.children.length > 1) section.append(extras);
+  appendCulturalSources(section, chapter.id, station);
+  appendSectionSources(section, chapter, station);
   const navigation = element('nav', '', 'next');
   navigation.setAttribute('aria-label', 'Weiterlernen');
   if (station > 0) navigation.append(link('← Vorige Station', stationAddress(chapter, station - 1)));
@@ -311,9 +308,9 @@ soundtrack.addEventListener('ended', () => {
   martaPlayer.hidden = false;
   martaVideo.replaceChildren(player);
 });
-main.addEventListener('toggle', event => {
-  if (event.target.classList.contains('station-extras') && event.target.open) {
+main.addEventListener('click', event => {
+  if (event.target.closest('a[target="_blank"]')) {
     soundtrack.pause();
     closeMarta();
   }
-}, true);
+});
