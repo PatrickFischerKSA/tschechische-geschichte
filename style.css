@@ -202,3 +202,39 @@ footer { padding-bottom: 3.5rem; }
 #marta-player form { display: flex; justify-content: flex-end; }
 #marta-player button { font: inherit; cursor: pointer; }
 #marta-player h2 { font-size: clamp(1.9rem, 5vw, 3rem); margin: .6rem 0; }
+
+/* Pale tones drawn from the Czech tricolour. */
+:root {
+  --paper: #f3f4f6;
+  --white: #fdfcfa;
+  --ink: #273546;
+  --muted: #4d6074;
+  --line: #cad3df;
+  --red: #814952;
+  --navy: #344b63;
+}
+body { background: var(--paper); }
+.hero { background: linear-gradient(90deg, #283e55f7, #344e67d9 44%, #526a8130), url('bilder/prag-1900.jpg') center 48% / cover; }
+.hero .eyebrow { color: #efd7dc; }
+.hero .start { background: #f2e3e5; }
+.layout aside, .chapter-header, .chapter-visual, .next a:last-child { background: var(--navy); }
+.layout aside .progress, .chapter-visual figcaption { color: #e4ebf3; }
+.layout aside progress { accent-color: #e4bcc5; }
+.chapter-menu summary, #timeline .date, #timeline small, .chapter-header .eyebrow, .chapter-header a { color: #f3d9de; }
+#timeline { border-color: #73869a; }
+#timeline a { background: #425a71; border-color: #73869a; }
+#timeline a:hover, #timeline a[aria-current] { background: #5d5366; border-color: #e3bcc7; }
+.station { border-left-color: #cb9ba6; }
+.station-extras { background: #edf0f5; border-left-color: #c59ba6; }
+.scene-picker { border-color: var(--line); }
+.station-nav a[aria-current] { background: var(--navy); border-color: var(--navy); }
+.chapter-visual img { background: #e4e9ef; }
+.soundtrack button, .soundtrack [role="status"]:not(:empty) { background: var(--navy); color: #fbf1f4; border-color: #d8b0ba; }
+.map-atlas { background: linear-gradient(145deg, #e6edf5, #fdfcfa 60%, #f2e5e9); border-block: 1px solid var(--line); }
+.map-atlas h2 { max-width: 18ch; margin-bottom: 1rem; }
+.map-atlas .orientation-copy { max-width: 64ch; margin-top: 0; }
+.comparison-maps { gap: .9rem; }
+.comparison-maps figure { border: 1px solid #c8d2dd; border-top: 4px solid #a3b6ca; border-radius: .35rem; overflow: hidden; }
+.comparison-maps figure:nth-child(2) { border-top-color: #bb929c; }
+.comparison-maps h3 { padding: .9rem; }
+.comparison-maps figcaption { color: var(--muted); border-top: 1px solid #e3e7ed; }
