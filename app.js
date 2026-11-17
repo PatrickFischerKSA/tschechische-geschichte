@@ -138,6 +138,23 @@ function appendCulturalSources(section, chapterId, index) {
     }
     section.append(paragraph);
   }
+  if (chapterId === 'revolution' && index === 2) appendHavelFilm(section);
+}
+
+function appendHavelFilm(section) {
+  const vimeo = 'https://vimeo.com/197563573';
+  const film = element('div');
+  const player = element('iframe');
+  player.src = 'https://player.vimeo.com/video/197563573?dnt=1';
+  player.title = 'Občan Havel – Dokumentarfilm mit englischen Untertiteln';
+  player.className = 'film-player';
+  player.loading = 'lazy';
+  player.allow = 'fullscreen; picture-in-picture';
+  film.append(element('h4', 'Občan Havel · Bürger Havel'), element('p', 'Dokumentarfilm · 1 Std. 58 Min. · englische Untertitel im Bild'), player, link('Film direkt auf Vimeo öffnen ↗', vimeo, true));
+  for (const [range, start, prompt, model] of havelScenes) {
+    film.append(sourceActivity('Filmstelle · ' + range, link('Bei ' + range.split('–')[0] + ' auf Vimeo öffnen ↗', vimeo + '#t=' + start, true), [null, prompt, model]));
+  }
+  section.append(film);
 }
 
 function sourceActivity(kind, source, exercise) {

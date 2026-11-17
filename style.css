@@ -85,3 +85,5 @@ footer{border-top:1px solid var(--line);padding:1.3rem;text-align:center;color:v
 .source-activity h4 { margin: .2rem 0 .45rem; font-size: 1rem; }
 .source-activity > p:first-child { margin-top: 0; }
 .source-activity > :last-child { margin-bottom: 0; }
+
+.film-player { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; }
