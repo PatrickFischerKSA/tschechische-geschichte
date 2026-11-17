@@ -150,6 +150,17 @@ function appendCulturalSources(section, chapterId, index) {
     const exercise = mediaTasks.besatzung.find(([source]) => source === 'lidice');
     section.append(sourceActivity('Widerstand und Besatzungsterror', null, exercise));
   }
+  if (chapterId === 'diktatur' && index === 1) {
+    section.append(element('h4', 'Lenka Reinerová – aus einem Namen wird eine Nummer'));
+    section.append(element('p', 'Die deutschsprachige Prager Schriftstellerin Lenka Reinerová war Jüdin, hatte vor den Nationalsozialisten fliehen müssen und war überzeugte Kommunistin. 1952 wurde sie selbst Opfer der stalinistischen Verfolgung. Ihre fünfzehnmonatige Haft 1952/53 wird in den biografischen Quellen dem Prager Gefängnis Ruzyně zugeordnet. Im Deutschlandfunk erinnerte sie sich an den Verlust ihres Namens im Gefängnis:'));
+    const quote = element('blockquote', '«Ich habe nie meinen Namen gehört, nie. Ich war 2814.»');
+    section.append(quote, link('Lenka Reinerová im Deutschlandfunk, 20. Oktober 2003 · Bericht zu «Alle Farben der Sonne und der Nacht» ↗', 'https://www.deutschlandfunk.de/lenka-reinerova-alle-farben-der-sonne-und-der-nacht-100.html', true));
+    section.append(element('p', 'Der persönliche Bericht ergänzt die Geschichte der Schauprozesse. Die Ersetzung des Namens durch eine Nummer machte staatliche Gewalt im alltäglichen Umgang mit Gefangenen erfahrbar. Reinerová beschrieb ihre Haft später literarisch in «Alle Farben der Sonne und der Nacht».'));
+    section.append(sourceActivity('Erinnerung lesen', null, [null,
+      'Warum wiederholt Reinerová das Wort «nie»? Erkläre, was der Gegensatz zwischen ihrem Namen und der Nummer über die Haft aussagt. Welche Erfahrung macht ihre Erinnerung zugänglich, die eine Übersicht über den Slánský-Prozess allein kaum vermitteln kann?',
+      'Die Wiederholung betont, dass ihr eigener Name aus dem Umgang mit ihr verschwand. Die Nummer ersetzte ihre persönliche Identität in der Gefängnisordnung. Die Erinnerung vermittelt die Erfahrung von Entwürdigung und Fremdbestimmung im Haftalltag. Sie zeigt damit, wie politische Verfolgung von einer einzelnen Person erlebt wurde. Für den Ablauf der Prozesse und die politischen Entscheidungen braucht es ergänzend andere Quellen.'
+    ]));
+  }
   if (chapterId === 'revolution' && index === 2) appendHavelFilm(section);
 }
 
@@ -178,11 +189,12 @@ function appendAnthropoidMedia(section) {
   attack.loading = 'lazy';
   attack.allow = 'fullscreen; picture-in-picture';
   section.append(attack, link('Beitrag auf YouTube öffnen ↗', 'https://www.youtube.com/watch?v=iUtNlkNn9-U', true));
-  section.append(sourceActivity('Attentatsfilm · Bildanalyse', link('Ausschnitt ab 00:00 öffnen ↗', 'https://www.youtube.com/watch?v=iUtNlkNn9-U&t=0s', true), [null,
-    'Betrachte 00:00–00:15. Wie wird Heydrich im Bild dargestellt? Welche Informationen über seine Macht und Verantwortung lassen sich aus diesem Bild allein gewinnen?',
-    'Zu sehen ist ein Schwarzweissporträt Heydrichs in Uniform, mit Abzeichen und einer geordneten, repräsentativen Haltung. Das Bild stellt ihn als ranghohen Funktionsträger dar. Seine konkreten Aufgaben im NS-Terrorapparat und seine Verantwortung für Verbrechen werden durch das Porträt allein nicht erklärt. Dafür brauchen wir den Kommentar und den historischen Kontext.',
-    '00:00–00:15'
+  section.append(sourceActivity('Attentat rekonstruieren · Höranalyse', link('Gesamten Beitrag ab 00:00 öffnen ↗', 'https://www.youtube.com/watch?v=iUtNlkNn9-U&t=0s', true), [null,
+    'Höre 00:00–03:26. Rekonstruiere den Anschlag in vier Schritten. Erkläre, warum Heydrichs Tagesablauf und die Strassenführung für den Plan wichtig waren, was beim ersten Angriff scheiterte und wie Heydrich dennoch verletzt wurde. Unterscheide anschliessend die nachgespielte Todesmeldung aus Fritz Langs Film von der historischen Chronologie. Wer trägt die Verantwortung für den anschliessenden Terror gegen Zivilisten?',
+    'Der Kommentar führt Heydrichs berechenbaren Tagesablauf als Voraussetzung der Planung ein. An der Haarnadelkurve warten die Angreifer auf seinen offenen Wagen. Gabčík versucht zu schiessen, doch seine Maschinenpistole hat eine Ladehemmung. Kubiš wirft daraufhin eine Granate. Sie explodiert am Wagen und verletzt Heydrich durch Splitter. Der Beitrag spielt danach eine Meldung von dessen Tod ein und benennt sie als Ausschnitt aus Fritz Langs Spielfilm «Auch Henker sterben». Historisch starb Heydrich erst am 4. Juni 1942. Die Verantwortung für die folgenden Massenmorde lag bei den deutschen NS-Machthabern und den ausführenden Tätern. Quellenkritik: Der Beitrag bezeichnet Gabčík ungenau als Tschechen und datiert die Besetzung auf 1938. Gabčík war Slowake. Die Besetzung der verbliebenen böhmischen Länder erfolgte im März 1939.',
+    '00:00–03:26 · vollständiger Kurzbeitrag'
   ]));
+  section.append(link('Offizielle SWR-Sendeseite mit Manuskript zum Abgleich ↗', 'https://www.swr.de/swrkultur/wissen/2751942-auf-reinhard-heydrich-wird-ein-attentat-veruebt-100.html', true));
   section.append(element('h4', 'Lidice in historischen Filmaufnahmen'));
   section.append(element('p', 'Der einminütige Archivfilm «Destruction of Lidice» zeigt die Zerstörung des Dorfes. Die deutschen Untertitel sind ergänzende historische Erläuterungen dieser Lernstation. Sie ordnen die Bilder anhand des USHMM-Dossiers ein.'));
   const video = element('video', '', 'film-player');
