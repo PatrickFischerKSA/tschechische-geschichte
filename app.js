@@ -155,11 +155,29 @@ function appendCulturalSources(section, chapterId, index) {
     section.append(element('p', 'Die deutschsprachige Prager Schriftstellerin Lenka Reinerová war Jüdin, hatte vor den Nationalsozialisten fliehen müssen und war überzeugte Kommunistin. 1952 wurde sie selbst Opfer der stalinistischen Verfolgung. Ihre fünfzehnmonatige Haft 1952/53 wird in den biografischen Quellen dem Prager Gefängnis Ruzyně zugeordnet. Im Deutschlandfunk erinnerte sie sich an den Verlust ihres Namens im Gefängnis:'));
     const quote = element('blockquote', '«Ich habe nie meinen Namen gehört, nie. Ich war 2814.»');
     section.append(quote, link('Lenka Reinerová im Deutschlandfunk, 20. Oktober 2003 · Bericht zu «Alle Farben der Sonne und der Nacht» ↗', 'https://www.deutschlandfunk.de/lenka-reinerova-alle-farben-der-sonne-und-der-nacht-100.html', true));
-    section.append(element('p', 'Der persönliche Bericht ergänzt die Geschichte der Schauprozesse. Die Ersetzung des Namens durch eine Nummer machte staatliche Gewalt im alltäglichen Umgang mit Gefangenen erfahrbar. Reinerová beschrieb ihre Haft später literarisch in «Alle Farben der Sonne und der Nacht».'));
-    section.append(sourceActivity('Erinnerung lesen', null, [null,
-      'Warum wiederholt Reinerová das Wort «nie»? Erkläre, was der Gegensatz zwischen ihrem Namen und der Nummer über die Haft aussagt. Welche Erfahrung macht ihre Erinnerung zugänglich, die eine Übersicht über den Slánský-Prozess allein kaum vermitteln kann?',
-      'Die Wiederholung betont, dass ihr eigener Name aus dem Umgang mit ihr verschwand. Die Nummer ersetzte ihre persönliche Identität in der Gefängnisordnung. Die Erinnerung vermittelt die Erfahrung von Entwürdigung und Fremdbestimmung im Haftalltag. Sie zeigt damit, wie politische Verfolgung von einer einzelnen Person erlebt wurde. Für den Ablauf der Prozesse und die politischen Entscheidungen braucht es ergänzend andere Quellen.'
-    ]));
+    section.append(element('p', 'Höre Reinerová im längeren WDR-Gespräch «Erlebte Geschichten» von Georg Beck vom 20. Februar 2005. Ihre Haft wird hier in ihre Lebensgeschichte eingeordnet. Der Player gibt das frei zugängliche WDR-Original wieder.'));
+    const prisonAudio = element('audio');
+    prisonAudio.controls = true;
+    prisonAudio.preload = 'none';
+    prisonAudio.src = 'https://wdrmedien-a.akamaihd.net/medp/ondemand/weltweit/fsk0/19/192711/192711_1898974.mp3';
+    prisonAudio.setAttribute('aria-label', 'Lenka Reinerová – Erlebte Geschichten, WDR 5');
+    prisonAudio.style.width = '100%';
+    prisonAudio.addEventListener('play', () => {
+      soundtrack.pause();
+      closeMarta();
+    });
+    section.append(prisonAudio, link('Hörprobe beim WDR öffnen ↗', 'https://www1.wdr.de/radio/wdr5/sendungen/erlebtegeschichten/reinerovalenka102.html', true));
+    section.append(element('h4', 'Festnahme, Zelle und Verhör – längere Lesepassage'));
+    section.append(element('p', 'Lies im verlinkten Deutschlandfunk-Beitrag die Abschnitte von ihrer Festnahme bis zum Verhör über ihre jüdische Herkunft. Der Text enthält längere Äusserungen Reinerovás und Auszüge aus ihrem Haftbericht. Die folgenden Aufgaben nennen jeweils den Anfang der passenden Passage.'));
+    section.append(link('Lesepassage frei beim Deutschlandfunk öffnen ↗', 'https://www.deutschlandfunk.de/lenka-reinerova-alle-farben-der-sonne-und-der-nacht-100.html', true));
+    for (const [heading, question, answer] of [
+      ['Festnahme · Passage ab «Ich weiß bis heute»', 'Welche Einzelheiten machen die Festnahme als Einbruch in ihren Alltag erfahrbar? Erläutere auch die Wirkung der Ich-Perspektive.', 'Die Erinnerung verbindet den überraschenden Zugriff mit alltäglichen Verrichtungen. Die Ich-Perspektive vermittelt ihre damalige Orientierungslosigkeit und die spätere Rückschau.'],
+      ['Zelle · Passage ab «Was Nummer 2814»', 'Wie werden Licht, Zellenausstattung und Augenbinde zu Mitteln der Kontrolle? Unterscheide Reinerovás Äusserungen von der Rahmenerzählung des Journalisten.', 'Körperliche Bedürfnisse und Orientierung werden kontrolliert. Der Journalist beschreibt die Haftumgebung und ordnet die eingefügten Erinnerungen ein. Reinerová berichtet konkrete Erfahrungen.'],
+      ['Verhör · Passage ab «Wahrscheinlich war es so»', 'Was vermutet Reinerová über den Arbeitsauftrag des Verhörenden? Welche Formulierung zeigt, wie sicher sie das rückblickend weiss?', 'Sie vermutet ein vorgegebenes Verhörziel. Ihre einleitende Einschränkung kennzeichnet diese Erklärung als rückblickende Deutung.'],
+      ['Antisemitismus · Passage ab «Seit wann sind Sie Zionistin?»', 'Wie wird aus ihrer Herkunft ein Vorwurf gemacht? Verbinde die Passage mit dem Slánský-Prozess und erläutere, warum ihre eigene politische Überzeugung sie nicht schützte.', 'Jüdische Herkunft wird pauschal politisch verdächtigt. Kommunistische Überzeugung bietet keinen Schutz vor diesem antisemitischen Feindbild. Im Kapitel zum Slánský-Prozess begegnet dieselbe Logik.']
+    ]) {
+      section.append(sourceActivity(heading, null, [null, question, answer]));
+    }
   }
   if (chapterId === 'revolution' && index === 2) appendHavelFilm(section);
 }
