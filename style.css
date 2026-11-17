@@ -255,3 +255,16 @@ body { background: var(--paper); }
 #marta-player p { margin: .4rem 0; font-size: .85rem; }
 #marta-player button { float: right; font-size: .75rem; }
 #marta-video iframe { min-height: 200px; }
+
+body {
+  background: linear-gradient(145deg, #d7e2ef 0%, #f8f7f4 45%, #ead1d7 100%) fixed;
+}
+.map-atlas {
+  background: linear-gradient(140deg, #c7d8eb 0%, #e0e9f3 30%, #faf8f6 52%, #ebd3da 77%, #dfbbc6 100%);
+  border-block-color: #a4b8cf;
+}
+.station {
+  background: linear-gradient(120deg, #e7eef6, #fdfcfa 52%, #f3e1e6);
+  border-left-color: #ba8494;
+}
+.station-extras { background: #e0e9f3; }
