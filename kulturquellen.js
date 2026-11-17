@@ -135,3 +135,13 @@ culturalImages.republik[3] = [
   null,
   'Das Gemälde ist eine symbolische Geschichtsdeutung aus der Zeit der Ersten Republik. Achte darauf, wie Mucha die Figurengruppen durch Licht und Farbe unterscheidet.'
 ];
+
+culturalSources.fruehling[1].push(
+  ['Philip Kaufmans Verfilmung von Milan Kunderas ', 'Die unerträgliche Leichtigkeit des Seins (1988), DVD mit deutschen Untertiteln', 'https://www.videobuster.de/dvd-bluray-verleih/66379/die-unertraegliche-leichtigkeit-des-seins', ' verbindet den Einmarsch von 1968 mit den Entscheidungen von Tereza, Tomáš und Sabina. Juliette Binoche spielt Tereza, die als Fotografin die Besetzung auf der Strasse festhält. Vergleiche ihre Perspektive mit den Archivaufnahmen im Abschnitt. Was zeigt die Spielfilmszene über das Risiko des Fotografierens, und was lässt sich mit den zeitgenössischen Bildern belegen?']
+);
+culturalSources.revolution[2].push(
+  ['Pavel Koutecký und Miroslav Janek zeigen in ', 'Občan Havel (Bürger Havel, 2008) · DAFilms', 'https://dafilms.com/film/7188-citizen-havel', ' den politischen Alltag nach der Teilung. Die Kamera begleitet Václav Havel bei der Übernahme des Präsidentenamts und bei Begegnungen hinter den Kulissen. Vergleiche diese Nähe mit den öffentlichen Auftritten von 1989. Was erfährst du über die Arbeit eines Präsidenten, wenn die Kamera auch Wartezeiten, Gespräche und Vorbereitungen zeigt? Das ', 'DOK.fest München dokumentiert eine Vorführung mit deutschen Untertiteln', 'https://www.dokfest-muenchen.de/films/citizen-havel-obcan-havel?lang=en', '. Für die verlinkte Onlinefassung sind deutsche Untertitel nicht belegt.']
+);
+culturalSources.charta[1].push(
+  ['Karel Kryl sang im Münchner Exil auch auf Deutsch. Das Konzert ', 'Solidarita, München 1982', 'https://www.supraphonline.cz/album/70754-solidarita-mnichov-1982?v=1', ' galt der polnischen Solidarność. Supraphon bietet Hörproben, darunter ', 'Die innerdeutsche Frage', 'https://www.supraphonline.cz/album/70754-solidarita-mnichov-1982?trackId=909393', ', das Kryl auf Deutsch schrieb. Auch ', 'Der Schimmel', 'https://www.supraphonline.cz/album/70754-solidarita-mnichov-1982/cd?trackId=909402', ' und ', 'Das Zwiegespräch', 'https://www.supraphonline.cz/album/70754-solidarita-mnichov-1982/cd?trackId=909409', ' gehören zu diesem Konzert. Warum konnte der Wechsel zwischen Tschechisch, Deutsch und Polnisch bei einem Konzert im Exil politisch bedeutsam sein?']
+);
