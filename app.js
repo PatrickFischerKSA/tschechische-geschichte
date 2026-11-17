@@ -81,16 +81,16 @@ function modelAnswer(model) {
 
 // Each entry gives the text section for each medium, in chapter.media order.
 const sourceSections = {
-  republik: [2, 0, 6, 4, 1, 7],
-  muenchen: [1, 2, 4],
-  besatzung: [1, 0, 3, 2, 2],
-  umbruch: [1, 0, 2, 3],
-  diktatur: [1, 1, 0],
-  fruehling: [2, 0, 1, 3],
-  charta: [1, 0],
-  revolution: [0, 0, 2],
-  europa: [2, 1, 1, 2],
-  gegenwart: [0, 1, 1, 3, 3, 3]
+  republik: [2,6,4,1,7],
+  muenchen: [2,4],
+  besatzung: [1,0,2],
+  umbruch: [1,0,3],
+  diktatur: [1],
+  fruehling: [2,0,3],
+  charta: [0],
+  revolution: [0],
+  europa: [2,1,1,2],
+  gegenwart: [0,1,1,3,3,3]
 };
 
 const imageSections = {berg: 2, republik: 2, fruehling: 1, revolution: 0};
