@@ -59,7 +59,7 @@ function addCompletionButton(chapter) {
   main.append(button);
 }
 
-function addImage([file, directory, caption, credit]) {
+function sourceImage([file, directory, caption, credit]) {
   const source = commons + encodeURIComponent(file.replaceAll(' ', '_'));
   const figure = element('figure');
   const picture = element('img');
@@ -70,13 +70,65 @@ function addImage([file, directory, caption, credit]) {
   const description = element('figcaption', caption + ' · ' + credit + ' · ');
   description.append(link('Original und Rechte', source, true));
   figure.append(picture, description);
-  main.append(figure);
+  return figure;
 }
 
 function modelAnswer(model) {
   const reveal = element('details');
   reveal.append(element('summary', 'Musterlösung anzeigen'), element('p', model));
   return reveal;
+}
+
+// Each entry gives the text section for each medium, in chapter.media order.
+const sourceSections = {
+  republik: [2, 0, 6, 4, 1, 7],
+  muenchen: [1, 2, 4],
+  besatzung: [1, 0, 3, 2, 2],
+  umbruch: [1, 0, 2, 3],
+  diktatur: [1, 1, 0],
+  fruehling: [2, 0, 1, 3],
+  charta: [1, 0],
+  revolution: [0, 0, 2],
+  europa: [2, 1, 1, 2],
+  gegenwart: [0, 1, 1, 3, 3, 3]
+};
+
+const imageSections = {berg: 2, republik: 2, fruehling: 1, revolution: 0};
+const reflectionSections = {berg: 2, republik: 2, muenchen: 2, besatzung: 1, diktatur: 1, fruehling: 1, revolution: 2, europa: 1, gegenwart: 2};
+
+function appendSectionSources(section, chapter, index) {
+  const exercises = mediaTasks[chapter.id] || [];
+  if (imageSections[chapter.id] === index) {
+    const figure = sourceImage(chapter.image);
+    section.append(figure);
+    const exercise = exercises.find(([source]) => source === 'image');
+    if (exercise) section.append(sourceActivity('Bild lesen', null, exercise));
+  }
+  chapter.media?.forEach(([kind, title, url], source) => {
+    if (sourceSections[chapter.id][source] !== index) return;
+    const exercise = exercises.find(([entry]) => entry === source);
+    section.append(sourceActivity(kind, link(title + ' ↗', url, true), exercise));
+  });
+  if (reflectionSections[chapter.id] === index) {
+    const [prompt, model] = chapter.task;
+    section.append(sourceActivity('Weiterdenken', null, [null, prompt, model]));
+  }
+}
+
+function sourceActivity(kind, source, exercise) {
+  const activity = element('div', '', 'source-activity');
+  activity.append(element('p', kind, 'date'));
+  if (source) {
+    const heading = element('h4');
+    heading.append(source);
+    activity.append(heading);
+  }
+  if (exercise) {
+    const [, prompt, model, range] = exercise;
+    if (range) activity.append(element('p', 'Zeitfenster ' + range + ' ab Beitragsbeginn, ohne Werbung', 'date'));
+    activity.append(element('p', prompt), modelAnswer(model));
+  }
+  return activity;
 }
 
 function render(focus = false) {
@@ -90,48 +142,12 @@ function render(focus = false) {
     maps.append(link('Regionen und Grenzen auf den Karten vergleichen ↑', '#karten'));
     main.append(maps);
   }
-  if (chapter.image) addImage(chapter.image);
-  for (const [title, body] of chapter.sections) {
+  chapter.sections.forEach(([title, body], index) => {
     const section = element('section', '', 'reading');
     section.append(element('h3', title), element('p', body));
+    appendSectionSources(section, chapter, index);
     main.append(section);
-  }
-  if (chapter.media) {
-    const section = element('section', '', 'media');
-    const list = element('ul');
-    for (const [kind, title, url] of chapter.media) {
-      const row = element('li');
-      row.append(element('span', kind, 'date'), link(title + ' ↗', url, true));
-      list.append(row);
-    }
-    section.append(element('h3', 'Quellen und Medien'), list);
-    main.append(section);
-  }
-  const exercises = mediaTasks[chapter.id] || [];
-  if (chapter.task || exercises.length) {
-    const section = element('section', '', 'task');
-    section.append(element('h3', 'Quellenarbeit'));
-    for (const [source, prompt, model, range] of exercises) {
-      const exercise = element('div', '', 'reading');
-      const heading = element('h4');
-      if (source === 'image') {
-        heading.textContent = 'Bild · ' + chapter.image[2];
-      } else {
-        const [kind, title, url] = chapter.media[source];
-        heading.append(link(kind + ' · ' + title + ' ↗', url, true));
-      }
-      exercise.append(heading);
-      if (range) exercise.append(element('p', 'Zeitfenster ' + range + ' ab Beitragsbeginn, ohne Werbung', 'date'));
-      exercise.append(element('p', prompt), modelAnswer(model));
-      section.append(exercise);
-    }
-    if (chapter.task) {
-      const [prompt, model] = chapter.task;
-      if (exercises.length) section.append(element('h4', 'Vertiefung'));
-      section.append(element('p', prompt), modelAnswer(model));
-    }
-    main.append(section);
-  }
+  });
   addCompletionButton(chapter);
   const navigation = element('nav', '', 'next');
   navigation.setAttribute('aria-label', 'Kapitel wechseln');

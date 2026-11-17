@@ -75,3 +75,13 @@ footer{border-top:1px solid var(--line);padding:1.3rem;text-align:center;color:v
 .map-legend span { width: 1.1rem; height: .75rem; background: var(--swatch); border: 1px solid #526674; }
 .map-legend .map-line { height: 0; border: 0; border-top: 2px solid #243748; }
 .map-legend .internal { border-top: 2px dashed #526674; }
+
+.source-activity {
+  margin: .9rem 0 1.1rem;
+  padding: .85rem 1rem;
+  border-left: 3px solid var(--line);
+  background: var(--white);
+}
+.source-activity h4 { margin: .2rem 0 .45rem; font-size: 1rem; }
+.source-activity > p:first-child { margin-top: 0; }
+.source-activity > :last-child { margin-bottom: 0; }
